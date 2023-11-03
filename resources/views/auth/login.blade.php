@@ -12,7 +12,7 @@
                             @csrf
                             <div class="row mb-3">
                                 <label for="matric_no"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Matric number') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Matric no.') }}</label>
                                 <div class="col-md-6">
                                     <input id="matric_no" type="matric_no"
                                         class="form-control @error('matric_no') is-invalid @enderror" name="matric_no"
