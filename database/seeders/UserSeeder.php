@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'ADMIN',
                 'matric_no' => '202020',
-                'password' => Hash::make('202020'),
+                'password' => Hash::make('202020202020'),
                 'email' => 'Takagi@san.com',
                 'department' => 1,
                 'phone_number' => null,
