@@ -8,3 +8,15 @@ application.windows32
 application.windows64
 application.macosx
 out
+
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
