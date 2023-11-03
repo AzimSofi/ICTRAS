@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -66,8 +67,16 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'matric_no' => $data['matric_no'],
             'email' => $data['email'],
+            'department' => $data['department'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        $departments = Department::all();
+        return view('auth.register', compact('departments'));
     }
 }
