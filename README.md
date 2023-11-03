@@ -14,7 +14,7 @@ ICTRAS is a web-based application system developed for the Kulliyyah of Engineer
 - `npm install` (npm package dependencies)
 - `cp .env.example .env` (setup env)
 - `php artisan key:generate`
-- `php artisan migrate --seed` (setup database first)
+- `php artisan migrate:fresh --seed` (setup database first)
 - `npm run dev` or `prod`
 - `php artisan serve`
 
