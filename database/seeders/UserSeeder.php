@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'ADMIN',
+                'name' => 'Takagi',
                 'matric_no' => '202020',
                 'password' => Hash::make('202020202020'),
                 'email' => 'Takagi@san.com',
