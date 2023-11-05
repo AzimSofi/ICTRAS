@@ -19,9 +19,9 @@ class UserSeeder extends Seeder
                 'name' => 'ADMIN',
                 'matric_no' => 'admin',
                 'password' => Hash::make('123'),
-                'email' => '',
+                'email' => 'webmaster@iium.edu.my',
                 'department' => null,
-                'phone_number' => null,
+                'phone_number' => '+603 6421 6421',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -38,19 +38,22 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $data) {
-            User::updateOrCreate(
-                [
-                    'name' => $data['name'],
-                    'matric_no' => $data['matric_no'],
-                    'password' => $data['password'],
-                    'email' => $data['email'],
-                    'department' => $data['department'],
-                    'phone_number' => $data['phone_number'],
-                    'created_at' => $data['created_at'],
-                    'updated_at' => $data['updated_at'],
-                ],
-                $data,
-            );
+            $user = User::updateOrCreate([
+                'name' => $data['name'],
+                'matric_no' => $data['matric_no'],
+                'password' => $data['password'],
+                'email' => $data['email'],
+                'department' => $data['department'],
+                'phone_number' => $data['phone_number'],
+                'created_at' => $data['created_at'],
+                'updated_at' => $data['updated_at'],
+            ]);
+
+            if ($data['name'] === 'ADMIN') {
+                $user->assignRole('admin');
+            } else {
+                $user->assignRole('student');
+            }
         }
     }
 }

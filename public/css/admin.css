@@ -1,0 +1,25 @@
+.btn-edit {
+    background-color: #BD8A00 !important;
+    color: #ffffff !important;
+}
+
+.btn-edit:hover {
+    background-color: #916B00 !important;
+}
+
+.btn-edit:active {
+    background-color: #916B00;
+}
+
+.btn-cancel {
+    background-color: #727272 !important;
+    color: #ffffff !important;
+}
+
+.btn-cancel:hover {
+    background-color: #4e4e4e !important;
+}
+
+.btn-cancel:active {
+    background-color: #4e4e4e;
+}
