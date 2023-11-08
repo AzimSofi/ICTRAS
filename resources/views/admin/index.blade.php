@@ -12,45 +12,7 @@
     <div class="container mt-5 pt-3">
         <div class="row">
             <div class="col-lg-3">
-                <div class="sidebar">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="index.php">
-                                <i class="bi bi-house-door-fill"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="userlog.php">
-                                <i class="bi bi-journal-bookmark-fill"></i> Userlog
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="History.php">
-                                <i class="bi bi-clock-history"></i> History
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="userlog.php">
-                                <i class="bi bi-journal-check"></i> User Assigments
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ecourse.php" target="_blank" rel="noopener noreferrer">
-                                <i class="bi bi-book-fill"></i> Endorsed Courses
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="student.php">
-                                <i class="bi bi-people-fill"></i> Student Management
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="printselect.php">
-                                <i class="bi bi-printer-fill"></i> Print Out
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                @include("admin.sidebar")
             </div>
             <div class="col-lg-9">
                 <center>
