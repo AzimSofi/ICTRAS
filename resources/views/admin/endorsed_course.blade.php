@@ -15,6 +15,16 @@
                 @include("admin.sidebar")
             </div>
             <div class="col-lg-9">
+                <div class="row mb-4">
+                    <div class="col">
+                        <form action="{{ route('endorsed_course.index') }}" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search for courses..." value="{{ request('search') }}">
+                                <button type="submit" class="btn btn-outline-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <table class="table">
                     <thead>
                       <tr>
