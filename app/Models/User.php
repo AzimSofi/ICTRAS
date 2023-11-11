@@ -25,7 +25,7 @@ class User extends Authenticatable
         'matric_no',
         'password',
         'email',
-        'department',
+        'department_id',
         'phone_number',
     ];
 

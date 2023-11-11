@@ -23,3 +23,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('admin', App\Http\Controllers\AdminController::class);
 Route::resource('endorsed_course', App\Http\Controllers\EndorsedCourseController::class); // ->shallow();
+Route::resource('user_assignment', App\Http\Controllers\UserAssignmentController::class);
