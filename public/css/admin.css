@@ -23,3 +23,8 @@
 .btn-cancel:active {
     background-color: #4e4e4e;
 }
+
+.icon-hover:hover {
+    color: #007bff; /* or any color of your choice */
+    cursor: pointer; /* changes the cursor to indicate it's clickable */
+}
