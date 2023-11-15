@@ -17,11 +17,11 @@ class EndorsedCourseController extends Controller
         $search = $request->input('search');
         if ($search) {
             $endorsed_courses = EndorsedCourse::where('university', 'like', "%{$search}%")
-                                                ->orWhere('course_name', 'like', "%{$search}%")
-                                                ->orWhere('endorsed_course_name', 'like', "%{$search}%")
-                                                ->orWhereHas('department', function ($query) use ($search) {
-                                                    $query->where('department_name', 'like', "%{$search}%");
-                                                });
+                ->orWhere('course_name', 'like', "%{$search}%")
+                ->orWhere('endorsed_course_name', 'like', "%{$search}%")
+                ->orWhereHas('department', function ($query) use ($search) {
+                    $query->where('department_name', 'like', "%{$search}%");
+                });
             if (strtolower($search) === 'approved') {
                 $endorsed_courses = $endorsed_courses->orWhere('status', true);
             } elseif (strtolower($search) === 'disapproved') {
@@ -33,7 +33,7 @@ class EndorsedCourseController extends Controller
             $endorsed_courses = EndorsedCourse::all();
         }
 
-        return view("admin.endorsed_course", compact("endorsed_courses"));
+        return view('admin.endorsed-course.index', compact('endorsed_courses'));
     }
 
     /**

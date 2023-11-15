@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('admin', App\Http\Controllers\AdminController::class);
-Route::resource('endorsed_course', App\Http\Controllers\EndorsedCourseController::class); // ->shallow();
-Route::resource('user_assignment', App\Http\Controllers\UserAssignmentController::class);
+Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class); // ->shallow();
+Route::resource('user_assignments', App\Http\Controllers\UserAssignmentController::class);
+Route::resource('users', App\Http\Controllers\UserController::class);
+Route::get('userlogs', [UserlogController::class, 'index'])->name('userlogs.index');
+

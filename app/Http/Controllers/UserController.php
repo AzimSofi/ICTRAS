@@ -6,28 +6,14 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserAssignmentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        if ($search) {
-            $users = User::where('name', 'like', "%{$search}%")
-                ->orWhere('matric_no', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->orWhereHas('department', function ($query) use ($search) {
-                    $query->where('department_name', 'like', "%{$search}%");
-                })
-                ->orWhere('phone_number', 'like', "%{$search}%");
-            $users = $users->get();
-        } else {
-            $users = User::all();
-        }
-
-        return view('admin.user-assignments.index', compact('users'));
+        //
     }
 
     /**
@@ -49,7 +35,7 @@ class UserAssignmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserAssignment $userAssignment)
+    public function show(User $user)
     {
         //
     }
@@ -57,7 +43,7 @@ class UserAssignmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserAssignment $userAssignment)
+    public function edit(User $user)
     {
         //
     }
@@ -65,7 +51,7 @@ class UserAssignmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserAssignment $userAssignment)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -75,9 +61,10 @@ class UserAssignmentController extends Controller
      */
     public function destroy(User $user)
     {
+        // dd($user);
         $user->delete();
         return redirect()
-            ->back()
+            ->route('user_assignment.index')
             ->with('success', 'User has been deleted.');
     }
 }

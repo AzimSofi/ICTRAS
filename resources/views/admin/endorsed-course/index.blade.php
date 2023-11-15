@@ -9,7 +9,7 @@
 @section('content')
     <div class="row mb-4">
         <div class="col">
-            <form action="{{ route('endorsed_course.index') }}" method="GET">
+            <form action="{{ route('endorsed_courses.index') }}" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search for courses..."
                         value="{{ request('search') }}">

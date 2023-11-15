@@ -9,7 +9,7 @@
 @section('content')
     <div class="row mb-4">
         <div class="col">
-            <form action="{{ route('user_assignment.index') }}" method="GET">
+            <form action="{{ route('user_assignments.index') }}" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search for user..."
                         value="{{ request('search') }}">
@@ -23,7 +23,7 @@
             <tr>
                 <th scope="col">No.</th>
                 <th scope="col">Name</th>
-                <th scope="col">Matri no</th>
+                <th scope="col">Matric no</th>
                 <th scope="col">Email</th>
                 <th scope="col">Department</th>
                 <th scope="col">Phone number</th>
@@ -39,9 +39,22 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->department?->department_name }}</td>
                     <td>{{ $user->phone_number }}</td>
-                    <td></td>
+                    <td>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="align-self-center">
+                                <i class="fas fa-light fa-list fa-lg icon-hover"></i>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-light fa-pen-to-square fa-lg icon-hover"></i>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-light fa-trash fa-lg icon-hover"></i>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    @include('admin.user-assignments.destroy')
 @endsection
