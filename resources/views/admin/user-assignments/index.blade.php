@@ -9,7 +9,7 @@
 @section('content')
     <div class="row mb-4">
         <div class="col">
-            <form action="{{ route('user_assignment.index') }}" method="GET">
+            <form action="{{ route('user_assignments.index') }}" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search for user..."
                         value="{{ request('search') }}">
@@ -48,10 +48,7 @@
                                 <i class="fas fa-light fa-pen-to-square fa-lg icon-hover"></i>
                             </div>
                             <div class="align-self-center">
-                                <i class="fas fa-light fa-trash fa-lg icon-hover destroyItem"
-                                data-bs-route="{{ route('user.destroy', $user) }}"
-                                data-bs-object="{{ $user }}"
-                                aria-controls="destroyItem"></i>
+                                <i class="fas fa-light fa-trash fa-lg icon-hover"></i>
                             </div>
                         </div>
                     </td>
