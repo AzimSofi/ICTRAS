@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('admin', App\Http\Controllers\AdminController::class);
-Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class); // ->shallow();
-Route::resource('user_assignments', App\Http\Controllers\UserAssignmentController::class);
-Route::resource('users', App\Http\Controllers\UserController::class);
-Route::get('userlogs', [UserlogController::class, 'index'])->name('userlogs.index');
 
+Route::resource('users', App\Http\Controllers\UserController::class);
+Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+
+Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class);
+Route::get('student_management', [App\Http\Controllers\StudentManagementController::class, 'index'])->name('student_management.index');
+Route::get('userlogs', [App\Http\Controllers\UserlogController::class, 'index'])->name('userlogs.index');

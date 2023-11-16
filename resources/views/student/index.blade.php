@@ -12,19 +12,28 @@
     <div class="container mt-5 pt-3">
         <div class="row">
             <div class="col-lg-3">
-                @include("admin.sidebar")
+                @include('student.sidebar')
             </div>
             <div class="col-lg-9">
                 <center>
                     <div class="card py-4" style="width: 50%;">
                         <div class="text-center">
-                            <img src="images/admin_pfp.png" {{-- class="card-img-top" alt="Card image cap" --}} width="150px" height="auto">
+                            @if (auth()->user()->profile_picture)
+                                <img src="{{ asset('storage/profile_images/' . auth()->user()->profile_picture) }}"
+                                    class="card-img-top" alt="Profile Image of {{ $user->name }}"
+                                    style="width: 150px !important; height=auto">
+                            @else
+                                <img src="{{ asset('storage/profile_images/default.png') }}" class="card-img-top"
+                                    alt="Default Profile Image" width="150px" height="auto">
+                            @endif
                         </div>
                         <div class="card-body">
                             <h1 class="card-title text-center mb-4">{{ $user->name }}</h1>
-                            @if ( true )
-                                <p><b>Phone :</b> {{ $user->phone_number }}</p>
-                                <p><b>Email:</b> {{ $user->email }}</p>
+                            @if (true)
+                                <p><b>Matric No :</b> {{ $user->matric_no }}</p>
+                                <p><b>Email :</b> {{ $user->email }}</p>
+                                <p><b>Phone no :</b> {{ $user->phone_number ?? "Unknown" }}</p>
+                                <p><b>Department :</b> {{ $user->department->department_name }}</p>
                             @else
                                 {{-- <form action="{{ route('user.update', $user->id) }}" method="POST">
                                     @csrf

@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class StudentManagementController extends Controller
+{
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        if ($search) {
+            $users = User::where('name', 'like', "%{$search}%")
+                ->orWhere('matric_no', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhereHas('department', function ($query) use ($search) {
+                    $query->where('department_name', 'like', "%{$search}%");
+                })
+                ->orWhere('phone_number', 'like', "%{$search}%");
+            $users = $users->get();
+        } else {
+            $users = User::all();
+        }
+
+        return view('admin.student-management.index', compact('users'));
+    }
+}
