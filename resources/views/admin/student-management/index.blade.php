@@ -48,7 +48,7 @@
                                 <i class="fas fa-light fa-pen-to-square fa-lg icon-hover"></i>
                             </div>
                             <div class="align-self-center">
-                                <i class="fas fa-light fa-trash fa-lg icon-hover"></i>
+                                <i class="destroyItem fas fa-light fa-trash fa-lg icon-hover"></i>
                             </div>
                         </div>
                     </td>
