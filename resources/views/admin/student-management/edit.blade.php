@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="department{{ $user->id }}" class="form-label">Department</label>
-                <select id="department{{ $user->id }}" name="department" class="form-select">
+                <select id="department{{ $user->id }}" name="department_id" class="form-select">
                     @foreach ($departments as $department)
                         <option value="{{ $department->id }}"
                             {{ $user->department_id == $department->id ? 'selected' : '' }}>{{ $department->name }}

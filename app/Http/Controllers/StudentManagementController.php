@@ -14,18 +14,20 @@ class StudentManagementController extends Controller
         $departments = Department::all();
 
         $search = $request->input('search');
+        $usersQuery = User::role('student');
         if ($search) {
-            $users = User::where('name', 'like', "%{$search}%")
-                ->orWhere('matric_no', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->orWhereHas('department', function ($query) use ($search) {
-                    $query->where('name', 'like', "%{$search}%");
-                })
-                ->orWhere('phone_number', 'like', "%{$search}%");
-            $users = $users->get();
-        } else {
-            $users = User::all();
+            $usersQuery = $usersQuery->where(function($query) use ($search) {
+                $query->where('name', 'like', "%{$search}%")
+                    ->orWhere('matric_no', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhereHas('department', function ($subQuery) use ($search) {
+                        $subQuery->where('name', 'like', "%{$search}%");
+                    })
+                    ->orWhere('phone_number', 'like', "%{$search}%");
+            });
         }
+
+        $users = $usersQuery->get();
 
         return view('admin.student-management.index', compact('users', 'departments'));
     }
