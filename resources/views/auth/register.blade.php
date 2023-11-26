@@ -77,7 +77,7 @@
                                     @enderror --}}
                                     <select id="department" name="department" class="form-select">
                                         @foreach ($departments as $item)
-                                            <option value="{{ $item->id }}">{{ $item->department_name }}</option>
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

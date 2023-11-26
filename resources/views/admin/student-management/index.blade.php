@@ -37,7 +37,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->matric_no }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->department?->department_name }}</td>
+                    <td>{{ $user->department?->name }}</td>
                     <td>{{ $user->phone_number }}</td>
                     <td>
                         <div class="d-flex justify-content-between align-items-center">
@@ -45,11 +45,21 @@
                                 <i class="fas fa-light fa-list fa-lg icon-hover"></i>
                             </div>
                             <div class="align-self-center">
-                                <i class="fas fa-light fa-pen-to-square fa-lg icon-hover"></i>
+                                <i class="fas fa-light fa-pen-to-square fa-lg icon-hover"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#editUser{{ $user->id }}">
+                                </i>
                             </div>
                             <div class="align-self-center">
                                 <i class="destroyItem fas fa-light fa-trash fa-lg icon-hover"></i>
                             </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <div class="collapse" id="editUser{{ $user->id }}">
+                            @include('admin.student-management.edit')
                         </div>
                     </td>
                 </tr>

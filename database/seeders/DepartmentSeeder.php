@@ -14,48 +14,48 @@ class DepartmentSeeder extends Seeder
     {
         $departments = [
             [
-                'department_code' => 'AERO',
-                'department_name' => 'Aerospace engineering ',
+                'code' => 'AERO',
+                'name' => 'Aerospace engineering',
             ],
             [
-                'department_code' => 'AUTO',
-                'department_name' => 'Automotive Engineering',
+                'code' => 'AUTO',
+                'name' => 'Automotive Engineering',
             ],
             [
-                'department_code' => 'BIO',
-                'department_name' => 'Biotechnology engineering',
+                'code' => 'BIO',
+                'name' => 'Biotechnology engineering',
             ],
             [
-                'department_code' => 'CIV',
-                'department_name' => 'Civil Engineering',
+                'code' => 'CIV',
+                'name' => 'Civil Engineering',
             ],
             [
-                'department_code' => 'COMM',
-                'department_name' => 'Communication Engineering ',
+                'code' => 'COMM',
+                'name' => 'Communication Engineering',
             ],
             [
-                'department_code' => 'ECIE',
-                'department_name' => 'Electrical Computer and Information Engineering ',
+                'code' => 'ECIE',
+                'name' => 'Electrical Computer and Information Engineering',
             ],
             [
-                'department_code' => 'MANU',
-                'department_name' => 'Manufacturing Engineering ',
+                'code' => 'MANU',
+                'name' => 'Manufacturing Engineering',
             ],
             [
-                'department_code' => 'MATER',
-                'department_name' => 'Material Engineering ',
+                'code' => 'MATER',
+                'name' => 'Material Engineering',
             ],
             [
-                'department_code' => 'MECH',
-                'department_name' => 'Mechatronics engineering  ',
+                'code' => 'MECH',
+                'name' => 'Mechatronics engineering',
             ],
         ];
 
         foreach ($departments as $data) {
             Department::updateOrCreate(
                 [
-                    'department_code' => $data['department_code'],
-                    'department_name' => $data['department_name'],
+                    'code' => $data['code'],
+                    'name' => $data['name'],
                 ],
                 $data,
             );

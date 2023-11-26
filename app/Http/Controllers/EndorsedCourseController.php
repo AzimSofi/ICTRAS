@@ -20,7 +20,7 @@ class EndorsedCourseController extends Controller
                 ->orWhere('course_name', 'like', "%{$search}%")
                 ->orWhere('endorsed_course_name', 'like', "%{$search}%")
                 ->orWhereHas('department', function ($query) use ($search) {
-                    $query->where('department_name', 'like', "%{$search}%");
+                    $query->where('name', 'like', "%{$search}%");
                 });
             if (strtolower($search) === 'approved') {
                 $endorsed_courses = $endorsed_courses->orWhere('status', true);

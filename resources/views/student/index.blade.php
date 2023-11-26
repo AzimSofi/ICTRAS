@@ -33,7 +33,7 @@
                                 <p><b>Matric No :</b> {{ $user->matric_no }}</p>
                                 <p><b>Email :</b> {{ $user->email }}</p>
                                 <p><b>Phone no :</b> {{ $user->phone_number ?? "Unknown" }}</p>
-                                <p><b>Department :</b> {{ $user->department->department_name }}</p>
+                                <p><b>Department :</b> {{ $user->department->name }}</p>
                             @else
                                 {{-- <form action="{{ route('user.update', $user->id) }}" method="POST">
                                     @csrf

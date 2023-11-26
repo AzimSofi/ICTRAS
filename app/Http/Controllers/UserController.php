@@ -53,7 +53,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $input = $request->all();
+        $user->update($input);
+
+        return redirect()->back()->with('success', 'User has been updated.');
     }
 
     /**

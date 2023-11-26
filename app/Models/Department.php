@@ -12,7 +12,7 @@ class Department extends Model
     protected $table = 'departments';
 
     protected $fillable = [
-        'department_code',
-        'department_name',
+        'code',
+        'name',
     ];
 }

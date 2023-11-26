@@ -34,7 +34,7 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $endorsed_course->university }}</td>
-                    <td>{{ $endorsed_course->department->department_name }}</td>
+                    <td>{{ $endorsed_course->department->name }}</td>
                     <td>{{ $endorsed_course->course_name }}</td>
                     <td>{{ $endorsed_course->endorsed_course_name }}</td>
                     <td>{{ $endorsed_course->status ? 'APPROVED' : 'DISAPPROVED' }}</td>
