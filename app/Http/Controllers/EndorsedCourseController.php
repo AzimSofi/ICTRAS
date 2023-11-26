@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreEndorsedCourseRequest;
 use App\Http\Requests\UpdateEndorsedCourseRequest;
 use App\Models\EndorsedCourse;
+use App\Models\Department;
 
 class EndorsedCourseController extends Controller
 {
@@ -14,6 +15,8 @@ class EndorsedCourseController extends Controller
      */
     public function index(Request $request)
     {
+        $departments = Department::all();
+
         $search = $request->input('search');
         if ($search) {
             $endorsed_courses = EndorsedCourse::where('university', 'like', "%{$search}%")
@@ -33,7 +36,7 @@ class EndorsedCourseController extends Controller
             $endorsed_courses = EndorsedCourse::all();
         }
 
-        return view('admin.endorsed-course.index', compact('endorsed_courses'));
+        return view('admin.endorsed-course.index', compact('endorsed_courses', 'departments'));
     }
 
     /**
@@ -49,7 +52,11 @@ class EndorsedCourseController extends Controller
      */
     public function store(StoreEndorsedCourseRequest $request)
     {
-        //
+        $input = $request->all();
+        $endorsedCourse = EndorsedCourse::create($input);
+        // $endorsedCourse->save();
+
+        return redirect()->route('endorsed_courses.index')->with('success', 'Endorsed Course has been created.');
     }
 
     /**
@@ -73,7 +80,10 @@ class EndorsedCourseController extends Controller
      */
     public function update(UpdateEndorsedCourseRequest $request, EndorsedCourse $endorsedCourse)
     {
-        //
+        $input = $request->all();
+        $endorsedCourse->update($input);
+
+        return redirect()->back()->with('success', 'Endorsed Course has been updated.');
     }
 
     /**

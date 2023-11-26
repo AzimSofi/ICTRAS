@@ -11,6 +11,10 @@ class StoreEndorsedCourseRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        if (auth()->user()->hasRole('admin')){
+            return true;
+        }
+
         return false;
     }
 

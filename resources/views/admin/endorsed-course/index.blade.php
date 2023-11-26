@@ -7,6 +7,14 @@
 @endsection
 
 @section('content')
+    <div class="row my-4 m-1">
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#endorseCourseModal">
+            Endorse a course
+        </button>
+        {{-- <button id="endorseCourseBtn" class="btn btn-outline-dark">
+            Endorse a course
+        </button> --}}
+    </div>
     <div class="row mb-4">
         <div class="col">
             <form action="{{ route('endorsed_courses.index') }}" method="GET">
@@ -42,4 +50,5 @@
             @endforeach
         </tbody>
     </table>
+    @include('admin.endorsed-course.create')
 @endsection
