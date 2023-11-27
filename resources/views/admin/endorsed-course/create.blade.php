@@ -18,7 +18,6 @@
                             </div>
                             <div class="mb-3">
                                 <label for="department_id" class="form-label">Department</label>
-                                {{-- <input type="text" class="form-control" id="department" name="department" required> --}}
                                 <select id="department_id" name="department_id" class="form-select">
                                     @foreach ($departments as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -54,9 +53,6 @@
     </div>
 </div>
 
-
-<!-- Optional: Place to the bottom of scripts -->
 <script>
     const myModal = new bootstrap.Modal(document.getElementById('endorseCourseModal'), options)
-
 </script>

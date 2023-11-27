@@ -45,9 +45,10 @@
                                 <i class="fas fa-light fa-list fa-lg icon-hover"></i>
                             </div>
                             <div class="align-self-center">
-                                <i class="fas fa-light fa-pen-to-square fa-lg icon-hover"
+                                <i class="edit-toggle fas fa-light fa-pen-to-square fa-lg icon-hover"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#editUser{{ $user->id }}">
+                                    data-bs-target="#editUser{{ $user->id }}"
+                                    data-user-id="{{ $user->id }}">
                                 </i>
                             </div>
                             <div class="align-self-center">
@@ -58,7 +59,7 @@
                 </tr>
                 <tr>
                     <td colspan="7">
-                        <div class="collapse" id="editUser{{ $user->id }}">
+                        <div class="collapse edit-form" id="editUser{{ $user->id }}">
                             @include('admin.student-management.edit')
                         </div>
                     </td>

@@ -33,7 +33,7 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $userlog->user_id }}</td>
                     <td>{{ $userlog->ip_address }}</td>
-                    <td>{{ $userlog->login_at }}</td>
+                    <td>{{ (new DateTime($userlog->login_at))->format('d/m/Y (g:iA)') }}</td>
                 </tr>
             @endforeach
         </tbody>
