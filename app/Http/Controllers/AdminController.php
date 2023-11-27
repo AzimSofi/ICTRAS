@@ -14,7 +14,7 @@ class AdminController extends Controller
             if (auth()->user()->hasRole("admin")) {
             return view("admin.index", compact("user"));
         } else {
-            return view("", compact("user"));
+            return view("home");
         }
     }
 }

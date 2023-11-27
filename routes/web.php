@@ -29,3 +29,5 @@ Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])-
 Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class);
 Route::get('student_management', [App\Http\Controllers\StudentManagementController::class, 'index'])->name('student_management.index');
 Route::get('userlogs', [App\Http\Controllers\UserlogController::class, 'index'])->name('userlogs.index');
+
+Route::resource('applications', App\Http\Controllers\ApplicationController::class);
