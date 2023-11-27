@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -55,6 +56,16 @@ class UserController extends Controller
     {
         $input = $request->all();
         $user->update($input);
+        $validatedData = $request->validate([
+            'matric_no' => [
+                'required',
+                'string',
+                Rule::unique('users')->ignore($user->id),
+            ],
+        ]);
+
+        // Update the user with the validated data
+        $user->update($validatedData);
 
         return redirect()->back()->with('success', 'User has been updated.');
     }

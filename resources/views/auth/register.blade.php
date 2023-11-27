@@ -65,16 +65,6 @@
                                 <label for="department"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
                                 <div class="col-md-6">
-                                    {{-- <input id="department" type="department"
-                                        class="form-control @error('email') is-invalid @enderror" name="department"
-                                        value="{{ old('department') }}" required autocomplete="department">
-
-
-                                    @error('department')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
                                     <select id="department" name="department" class="form-select">
                                         @foreach ($departments as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>

@@ -29,38 +29,19 @@
                         </div>
                         <div class="card-body">
                             <h1 class="card-title text-center mb-4">{{ $user->name }}</h1>
-                            @if (true)
-                                <p><b>Matric No :</b> {{ $user->matric_no }}</p>
-                                <p><b>Email :</b> {{ $user->email }}</p>
-                                <p><b>Phone no :</b> {{ $user->phone_number ?? "Unknown" }}</p>
-                                <p><b>Department :</b> {{ $user->department->name }}</p>
-                            @else
-                                {{-- <form action="{{ route('user.update', $user->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="mb-3">
-                                        <label for="phone_number" class="form-label"><b>Phone :</b></label>
-                                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $user->phone_number }}" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label"><b>Email:</b></label>
-                                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                    <button type="button" class="btn btn-secondary" onclick="history.back();">Cancel</button>
-                                </form> --}}
-                            @endif
+                            <p><b>Matric No :</b> {{ $user->matric_no }}</p>
+                            <p><b>Email :</b> {{ $user->email }}</p>
+                            <p><b>Phone no :</b> {{ $user->phone_number ?? 'Unknown' }}</p>
+                            <p><b>Department :</b> {{ $user->department->name }}</p>
                         </div>
-
                     </div>
                     <br>
-                    <button href="#" class="btn btn-edit">Edit Details</button>
-                    <button type="button" class="btn btn-cancel" onclick="history.back();">Cancel</button>
+                    <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editModal">
+                        Edit Details
+                    </button>
                 </center>
             </div>
         </div>
     </div>
+    @include('student.edit')
 </body>

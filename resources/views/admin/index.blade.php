@@ -12,7 +12,7 @@
     <div class="container mt-5 pt-3">
         <div class="row">
             <div class="col-lg-3">
-                @include("admin.sidebar")
+                @include('admin.sidebar')
             </div>
             <div class="col-lg-9">
                 <center>
@@ -34,5 +34,5 @@
             </div>
         </div>
     </div>
-    @include('admin.create')
+    @include('admin.edit')
 </body>
