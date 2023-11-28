@@ -41,16 +41,19 @@
         </div>
         <div class="card-body">
             {{-- <h5 class="card-title">Special title treatment</h5> --}}
-            <p class="card-text">Name of Institution: </p>
-            @if (true)
-                <p class="card-text">Name of Diploma: </p>
-            @else
-                <p class="card-text">Name of Degree: </p>
+            <p class="card-text">Name of Institution: {{ $user->previousInstitution->name ?? '' }}</p>
+            @if ($user->previousInstitution->degree_status ?? true)
+                <p class="card-text">Name of Degree:
+                @else
+                <p class="card-text">Name of Diploma:
             @endif
-            <p class="card-text">Year of study: </p>
-            <p class="card-text">Reason of leaving: </p>
-            <p class="card-text">CGPA: </p>
-            <a href="#" class="btn btn-primary">Add information</a>
+            {{ $user->previousInstitution->degree_or_diploma_name ?? '' }}</p>
+            <p class="card-text">Year of study: {{ $user->previousInstitution->year_of_study ?? '' }}</p>
+            <p class="card-text">Reason of leaving: {{ $user->previousInstitution->reason_of_leaving ?? '' }}</p>
+            <p class="card-text">CGPA: {{ $user->previousInstitution->cgpa ?? '' }}</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#previousInstitutionModal">
+                Add information
+            </button>
         </div>
         {{-- <div class="card-footer text-muted">
             2 days ago
@@ -97,5 +100,6 @@
             @endforeach
         </tbody>
     </table>
+    @include('student.applications.previous_institution.create')
     @include('student.applications.create')
 @endsection

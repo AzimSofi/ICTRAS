@@ -30,4 +30,5 @@ Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseControlle
 Route::get('student_management', [App\Http\Controllers\StudentManagementController::class, 'index'])->name('student_management.index');
 Route::get('userlogs', [App\Http\Controllers\UserlogController::class, 'index'])->name('userlogs.index');
 
+Route::post('previous_institution', [App\Http\Controllers\StudentController::class, 'createPreviousInstitution'])->name('student.createPreviousInstitution');
 Route::resource('applications', App\Http\Controllers\ApplicationController::class);

@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function previousInstitution(): BelongsTo
+    {
+        return $this->belongsTo(PreviousInstitution::class, 'matric_no', 'matric_no');
+    }
 }
