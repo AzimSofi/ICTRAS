@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-8 mt-3">
     <div class="alert alert-info">
         <strong>Note: Students who wish to apply for credit transfer must do so at the point of application
             for admission or the latest by the FOURTH WEEK of their first regular semester</strong>
