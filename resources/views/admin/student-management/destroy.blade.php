@@ -1,3 +1,7 @@
+<form action="" method="post" id="form_delete">
+    @csrf
+    @method('DELETE')
+</form>
 <script type="module">
     $('.destroyItem').click(function(e) {
         const button = $(this);
@@ -16,11 +20,11 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $("#form_delete").submit();
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
+                // Swal.fire({
+                //     title: "Deleted!",
+                //     text: "Your file has been deleted.",
+                //     icon: "success"
+                // });
             }
         });
     });

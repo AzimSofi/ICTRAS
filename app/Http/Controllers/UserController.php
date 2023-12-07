@@ -78,7 +78,7 @@ class UserController extends Controller
         // dd($user);
         $user->delete();
         return redirect()
-            ->route('user_assignment.index')
+            ->route('student_management.index')
             ->with('success', 'User has been deleted.');
     }
 }

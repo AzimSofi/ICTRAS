@@ -52,7 +52,10 @@
                                 </i>
                             </div>
                             <div class="align-self-center">
-                                <i class="destroyItem fas fa-light fa-trash fa-lg icon-hover"></i>
+                                <i class="destroyItem fas fa-light fa-trash fa-lg icon-hover"
+                                    data-bs-route="{{ route('users.destroy', $user) }}"
+                                    data-bs-object={{ $user }}>
+                                </i>
                             </div>
                         </div>
                     </td>
