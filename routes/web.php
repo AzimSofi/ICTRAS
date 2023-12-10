@@ -28,7 +28,9 @@ Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])-
 
 Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class);
 Route::get('student_management', [App\Http\Controllers\StudentManagementController::class, 'index'])->name('student_management.index');
+Route::get('student_management/print', [App\Http\Controllers\StudentManagementController::class, 'print'])->name('student_management.print');
 Route::get('userlogs', [App\Http\Controllers\UserlogController::class, 'index'])->name('userlogs.index');
 
 Route::post('previous_institution', [App\Http\Controllers\StudentController::class, 'createPreviousInstitution'])->name('student.createPreviousInstitution');
+Route::get('print_form', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print');
 Route::resource('applications', App\Http\Controllers\ApplicationController::class);

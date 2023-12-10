@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\PreviousInstitution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class StudentController extends Controller
 {
@@ -35,5 +36,17 @@ class StudentController extends Controller
         return redirect()
             ->route('applications.index')
             ->with('success', 'Previous institution has been added.');
+    }
+
+    public function print()
+    {
+        $data = [
+
+        ];
+
+        $pdf = App::make('dompdf.wrapper');
+        $view = view('student.print', $data)->render();
+        $pdf->loadHTML($view);
+        return $pdf->stream('student_print_form.pdf');
     }
 }

@@ -42,12 +42,13 @@
                     <td>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="align-self-center">
-                                <i class="fas fa-light fa-list fa-lg icon-hover"></i>
+                                <a href="{{ route('student_management.print') }}">
+                                    <i class="fas fa-light fa-print fa-lg icon-hover"></i>
+                                </a>
                             </div>
                             <div class="align-self-center">
                                 <i class="edit-toggle fas fa-light fa-pen-to-square fa-lg icon-hover"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#editUser{{ $user->id }}"
+                                    data-bs-toggle="collapse" data-bs-target="#editUser{{ $user->id }}"
                                     data-user-id="{{ $user->id }}">
                                 </i>
                             </div>
