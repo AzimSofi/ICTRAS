@@ -17,6 +17,3 @@ ICTRAS is a web-based application system developed for the Kulliyyah of Engineer
 - `php artisan migrate:fresh --seed` (setup database first)
 - `npm run dev` or `prod`
 - `php artisan serve`
-
-## 用事
-resources\移動のやつはLaravelに移動する予定
