@@ -51,9 +51,17 @@
             <p class="card-text">Year of study: {{ $user->previousInstitution->year_of_study ?? '' }}</p>
             <p class="card-text">Reason of leaving: {{ $user->previousInstitution->reason_of_leaving ?? '' }}</p>
             <p class="card-text">CGPA: {{ $user->previousInstitution->cgpa ?? '' }}</p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#previousInstitutionModal">
-                Add information
-            </button>
+            @if ($user->previousInstitution)
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#editPreviousInstitutionModal">
+                    Edit information
+                </button>
+            @else
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#previousInstitutionModal">
+                    Add information
+                </button>
+            @endif
         </div>
         {{-- <div class="card-footer text-muted">
             2 days ago
@@ -91,8 +99,8 @@
             @foreach ($applications as $application)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $application?->code }}</td>
-                    <td>{{ $application?->name }}</td>
+                    <td>{{ $application?->course_code }}</td>
+                    <td>{{ $application?->course_name }}</td>
                     <td>{{ $application?->credit_hours }}</td>
                     <td>{{ $application?->grade_obtained }}</td>
                     {{-- <td>{{ $application?->status ? 'APPROVED' : 'DISAPPROVED' }}</td> --}}
@@ -101,5 +109,6 @@
         </tbody>
     </table>
     @include('student.applications.previous_institution.create')
+    @include('student.applications.previous_institution.edit')
     @include('student.applications.create')
 @endsection

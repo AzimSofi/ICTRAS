@@ -1,7 +1,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICTRAS | Admin</title>
+    <title>ICTRAS | Student</title>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -21,10 +21,11 @@
                             @if (auth()->user()->profile_picture)
                                 <img src="{{ asset('storage/profile_images/' . auth()->user()->profile_picture) }}"
                                     class="card-img-top" alt="Profile Image of {{ $user->name }}"
-                                    style="width: 150px !important; height=auto">
+                                    style="width: 150px !important; height=auto; border-radius: var(--bs-card-inner-border-radius);">
                             @else
                                 <img src="{{ asset('storage/profile_images/default.png') }}" class="card-img-top"
-                                    alt="Default Profile Image" width="150px" height="auto">
+                                    alt="Default Profile Image"
+                                    style="width: 150px !important; height=auto; border-radius: var(--bs-card-inner-border-radius);">
                             @endif
                         </div>
                         <div class="card-body">

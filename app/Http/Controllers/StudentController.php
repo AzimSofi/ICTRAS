@@ -16,11 +16,7 @@ class StudentController extends Controller
         $departments = Department::all();
 
         $user = Auth::user();
-        if (
-            auth()
-                ->user()
-                ->hasRole('student')
-        ) {
+        if (auth()->user()->hasRole('student')) {
             return view('student.index', compact('user', 'departments'));
         } else {
             return view('', compact('user', 'departments'));
@@ -33,16 +29,22 @@ class StudentController extends Controller
         $previousInstitution->matric_no = Auth::user()->matric_no;
         $previousInstitution->save();
 
+        return redirect()->route('applications.index')->with('success', 'Previous institution has been added.');
+    }
+
+    public function editPreviousInstitution(Request $request)
+    {
+        $previousInstitution = PreviousInstitution::where('matric_no', Auth::user()->matric_no)->firstOrFail();
+        $previousInstitution->update($request->all());
+
         return redirect()
             ->route('applications.index')
-            ->with('success', 'Previous institution has been added.');
+            ->with('success', 'Previous institution has been updated.');
     }
 
     public function print()
     {
-        $data = [
-
-        ];
+        $data = [];
 
         $pdf = App::make('dompdf.wrapper');
         $view = view('student.print', $data)->render();

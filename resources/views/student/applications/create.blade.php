@@ -24,11 +24,11 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="credit_hours" class="form-label">Credit hours</label>
-                                <input type="text" class="form-control" id="credit_hours" name="credit_hours" required>
+                                <input type="numer" class="form-control" id="credit_hours" name="credit_hours" required>
                             </div>
                             <div class="mb-3">
-                                <label for="status" class="form-label">Grade Obtained</label>
-                                <select class="form-select" id="status" name="status" required>
+                                <label for="grade_obtained" class="form-label">Grade Obtained</label>
+                                <select class="form-select" id="grade_obtained" name="grade_obtained" required>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>

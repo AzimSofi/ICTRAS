@@ -60,7 +60,11 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['status'] = false;
+        $application = Application::create($input);
+        return redirect()->route('applications.index')->with('success', 'Course has been added.');
+
     }
 
     /**

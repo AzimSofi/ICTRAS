@@ -31,6 +31,7 @@ Route::get('student_management', [App\Http\Controllers\StudentManagementControll
 Route::get('student_management/print', [App\Http\Controllers\StudentManagementController::class, 'print'])->name('student_management.print');
 Route::get('userlogs', [App\Http\Controllers\UserlogController::class, 'index'])->name('userlogs.index');
 
-Route::post('previous_institution', [App\Http\Controllers\StudentController::class, 'createPreviousInstitution'])->name('student.createPreviousInstitution');
+Route::post('previous_institution/create', [App\Http\Controllers\StudentController::class, 'createPreviousInstitution'])->name('student.createPreviousInstitution');
+Route::post('previous_institution/edit', [App\Http\Controllers\StudentController::class, 'editPreviousInstitution'])->name('student.editPreviousInstitution');
 Route::get('print_form', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print');
 Route::resource('applications', App\Http\Controllers\ApplicationController::class);

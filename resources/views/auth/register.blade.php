@@ -62,10 +62,10 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="department"
+                                <label for="department_id"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Department') }}</label>
                                 <div class="col-md-6">
-                                    <select id="department" name="department" class="form-select">
+                                    <select id="department_id" name="department_id" class="form-select">
                                         @foreach ($departments as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
