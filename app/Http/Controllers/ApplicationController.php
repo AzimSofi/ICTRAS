@@ -72,7 +72,7 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
-        //
+    //
     }
 
     /**
@@ -88,7 +88,11 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, Application $application)
     {
-        //
+        $application->update($request->all());
+
+        return redirect()
+            ->route('applications.index')
+            ->with('success', 'Course has been updated.');
     }
 
     /**
@@ -96,6 +100,9 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
-        //
+        $application->delete();
+        return redirect()
+            ->route('applications.index')
+            ->with('success', 'Course has been deleted.');
     }
 }

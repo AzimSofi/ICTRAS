@@ -92,6 +92,7 @@
                 <th scope="col">Course name</th>
                 <th scope="col">Credit hours</th>
                 <th scope="col">Grade Obtained</th>
+                <th scope="col" style="width: 7%">Action</th>
                 {{-- <th scope="col">Status</th> --}}
             </tr>
         </thead>
@@ -103,7 +104,30 @@
                     <td>{{ $application?->course_name }}</td>
                     <td>{{ $application?->credit_hours }}</td>
                     <td>{{ $application?->grade_obtained }}</td>
+                    <td>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="align-self-center">
+                                <i class="edit-toggle fas fa-light fa-pen-to-square fa-lg icon-hover"
+                                    data-bs-toggle="collapse" data-bs-target="#editCourse{{ $application->id }}"
+                                    data-user-id="{{ $application->id }}">
+                                </i>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="destroyItem fas fa-light fa-trash fa-lg icon-hover"
+                                    data-bs-route="{{ route('applications.destroy', $application) }}"
+                                    data-bs-object={{ $application }}>
+                                </i>
+                            </div>
+                        </div>
+                    </td>
                     {{-- <td>{{ $application?->status ? 'APPROVED' : 'DISAPPROVED' }}</td> --}}
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <div class="collapse edit-form" id="editCourse{{ $application->id }}">
+                            @include('student.applications.edit')
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -111,4 +135,5 @@
     @include('student.applications.previous_institution.create')
     @include('student.applications.previous_institution.edit')
     @include('student.applications.create')
+    @include('student.applications.destroy')
 @endsection
