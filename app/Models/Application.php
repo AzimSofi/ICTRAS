@@ -12,10 +12,16 @@ class Application extends Model
     protected $table = 'applications';
 
     protected $fillable = [
+        'user',
         'course_code',
         'course_name',
         'credit_hours',
         'grade_obtained',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user', 'matric_no');
+    }
 }

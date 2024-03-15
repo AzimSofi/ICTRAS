@@ -6,6 +6,9 @@ use App\Models\Application;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\If_;
+use App\Models\EndorsedCourse;
+use Illuminate\Support\Facades\DB;
 
 class ApplicationController extends Controller
 {
@@ -17,6 +20,13 @@ class ApplicationController extends Controller
         $user = Auth::user();
         $applications = Application::all();
 
+        // Filter by user's matric no
+        $userMatricNo = $user->matric_no;
+        $applications = Application::whereHas('user', function ($query) use ($userMatricNo) {
+            $query->where('matric_no', $userMatricNo);
+        });
+
+        // Filter by user's search bar
         $search = $request->input('search');
         if ($search) {
             $applications = Application::where('code', 'like', "%{$search}%")
@@ -36,11 +46,7 @@ class ApplicationController extends Controller
             $applications = Application::all();
         }
 
-        if (
-            auth()
-                ->user()
-                ->hasRole('student')
-        ) {
+        if (auth()->user()->hasRole('student')) {
             return view('student.applications.index', compact('user', 'applications'));
         } else {
             return view('home');
@@ -61,10 +67,14 @@ class ApplicationController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['status'] = false;
+        $input['status'] = null;
+        $input['user'] = Auth()->user()->matric_no;
         $application = Application::create($input);
-        return redirect()->route('applications.index')->with('success', 'Course has been added.');
 
+        $this->evaluateCourse($application);
+        return redirect()->route('applications.index')
+                 ->with('success', 'Course has been added.')
+                 ->with('activeTab', 'applications');
     }
 
     /**
@@ -72,7 +82,7 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
-    //
+        //
     }
 
     /**
@@ -89,10 +99,11 @@ class ApplicationController extends Controller
     public function update(Request $request, Application $application)
     {
         $application->update($request->all());
+        $this->evaluateCourse($application);
 
-        return redirect()
-            ->route('applications.index')
-            ->with('success', 'Course has been updated.');
+        return redirect()->route('applications.index')
+                 ->with('success', 'Course has been updated.')
+                 ->with('activeTab', 'applications');
     }
 
     /**
@@ -101,8 +112,20 @@ class ApplicationController extends Controller
     public function destroy(Application $application)
     {
         $application->delete();
-        return redirect()
-            ->route('applications.index')
-            ->with('success', 'Course has been deleted.');
+        return redirect()->route('applications.index')->with('success', 'Course has been deleted.');
+    }
+
+    public function evaluateCourse(Application $application)
+{
+        $courseFullName = strtolower($application->course_code . ' - ' . $application->course_name);
+        $isEndorsed = EndorsedCourse::where(DB::raw('LOWER(course_name)'), $courseFullName)->exists(); // Check if the concatenated courseFullName exists in the endorsed_courses
+
+        if ($isEndorsed) {
+            $application->status = true;
+            $application->save();
+        } else {
+            $application->status = null;
+            $application->save();
+        }
     }
 }

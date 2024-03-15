@@ -6,7 +6,7 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="course_code{{ $application->id }}" class="form-label">Course code</label>
-                    <input type="text" class="form-control" id="course_code" name="course_code{{ $application->id }}"
+                    <input type="text" class="form-control" id="course_code{{ $application->id }}" name="course_code"
                         required value="{{ $application->course_code ?? '' }}">
                 </div>
                 <div class="mb-3">
@@ -16,8 +16,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="credit_hours{{ $application->id }}" class="form-label">Credit hours</label>
-                    <input type="text" class="form-control" id="credit_hours{{ $application->id }}"
-                        name="credit_hours" required value="{{ $application->credit_hours ?? '' }}">
+                    <input type="text" class="form-control" id="credit_hours{{ $application->id }}" name="credit_hours"
+                        required value="{{ $application->credit_hours ?? '' }}">
                 </div>
             </div>
             <div class="col">
