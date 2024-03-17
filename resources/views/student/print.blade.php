@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="page">
+    <div class="page" style="page-break-after: always;">
         <div>
             <img src="{{ public_path('images/IIUM AMAD logo PG13 (2).png') }}" alt="PG13 header" style="width: 195mm;">
         </div>
@@ -20,11 +20,10 @@
         </div> --}}
         <br>
         <div class="text-center mb-3 bg-black" style="padding-top: 5px; padding-bottom: 5px; font-style: ">
-            <div class="form-title"
-                style="font-size: 20px;">
+            <div class="form-title" style="font-size: 20px;">
                 APPLICATION FOR TRANSFER OF CREDIT <br>
                 (FROM OTHER UNIVERSITIES / COLLEGES)
-        </div>
+            </div>
         </div>
 
         <div class="criteria-list mb-3">
@@ -36,9 +35,9 @@
 
         <table class="checklist mb-4" style="margin-bottom: 0">
             <tr class="section-header" style="margin: 0">
-                <th colspan="2">
+                <th colspan="2" class="no-y">
                     <strong>CRITERIA FOR TRANSFER OF CREDIT<br>
-                    <i>Please read carefully the following criteria of transfer of credit:</i></strong>
+                        <i>Please read carefully the following criteria of transfer of credit:</i></strong>
                 </th>
             </tr>
             <tr>
@@ -98,100 +97,106 @@
                     </div>
                     <table>
                         <tr>
-                            <td class="bg-black">
+                            <td class="bg-black no-y">
                                 <strong>
                                     CHECKLIST: (OFFICE USE)<br>
-                                    *Please (√) which is applicable
+                                    *Please (/) which is applicable
                                 </strong>
                             </td>
-                            <td class="bg-black">
+                            <td class="bg-black no-y">
                                 <strong>*YES</strong>
                             </td>
-                            <td class="bg-black">
+                            <td class="bg-black no-y">
                                 <strong>*NO</strong>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                1. Course outline/syllabus</td>
-                            <td>
+                            <td class="no-y">
+                                1. Course outline/syllabus
+                            </td>
+                            <td class="no-y">
 
                             </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                2. Transcript/result slips</td>
-                            <td>
-
-                            </td>
-                            <td>
+                            <td class="no-y">
 
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="no-y">
+                                2. Transcript/result slips
+                            </td>
+                            <td class="no-y">
+
+                            </td>
+                            <td class="no-y">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="no-y">
                                 3. Date submitted to AMAD
-                                (By student)</td>
-                            <td>
+                                (By student)
+                            </td>
+                            <td class="no-y">
 
                             </td>
-                            <td>
+                            <td class="no-y">
 
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="no-y">
                                 4. Date submitted to Kulliyyah
-                                (By AMAD)</td>
-                            <td>
+                                (By AMAD)
+                            </td>
+                            <td class="no-y">
 
                             </td>
-                            <td>
+                            <td class="no-y">
 
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="no-y">
                                 5. Date received from AMAD
                             </td>
-                            <td>
+                            <td class="no-y">
 
                             </td>
-                            <td>
+                            <td class="no-y">
 
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="no-y">
                                 6. Date submitted to HOD(s)
                             </td>
-                            <td>
+                            <td class="no-y">
 
                             </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                7. Date received from HOD(s)</td>
-                            <td>
-
-                            </td>
-                            <td>
+                            <td class="no-y">
 
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                8. Date submitted to AMAD</td>
-                            <td>
+                            <td class="no-y">
+                                7. Date received from HOD(s)
+                            </td>
+                            <td class="no-y">
 
                             </td>
-                            <td>
+                            <td class="no-y">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="no-y">
+                                8. Date submitted to AMAD
+                            </td>
+                            <td class="no-y">
+
+                            </td>
+                            <td class="no-y">
 
                             </td>
                         </tr>
@@ -199,37 +204,150 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="background-color: #DFDFDF"><strong>PART A, B & C: TO BE FILLED IN BY THE APPLICANT <i>(Please write clearly)</i></strong></td>
+                <td colspan="2" class="bg-grey no-y"><strong>PART A, B & C: TO BE FILLED IN BY THE
+                        APPLICANT <i>(Please write clearly)</i></strong></td>
             </tr>
             <tr>
-                <td colspan="2" class="bg-black">PART A: PERSONAL DETAILS OF STUDENT</td>
+                <td colspan="2" class="bg-black no-y">PART A: PERSONAL DETAILS OF STUDENT</td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div style="margin-left: 22.5px">
+                        <br>
                         1. Name : <br>
                         2. Matric No, : <br>
                         3. Programme : <br>
                         4. Email : ... 5. Tel/Hp No. : ...<br>
                         6. Postal Address : <br>
                         7. Correspondance :<br>Address
+                        <br><br>
                     </div>
                 </td>
             </tr>
         </table>
         <div class="text-center" style="margin-right: 70px; margin-left: 70px; font-size: 14px;">
-            <strong><i>Note: Students who wish to apply for credit transfer must do so at the point of application for<br>
-                admission or the latest by the fourth week of their first regular semester</i></strong>
+            <strong><i>Note: Students who wish to apply for credit transfer must do so at the point of application
+                    for<br>
+                    admission or the latest by the fourth week of their first regular semester</i></strong>
         </div>
-        <!-- Repeat structure for PART B and PART C -->
 
-        <div class="footer text-center">
-            <p>Academic Management and Admission Division</p>
-            <p>International Islamic University Malaysia Gombak Selangor Darul Ehsan</p>
-            <p>Tel: 03 6196 4045/4043 Fax: 03 6196 4724</p>
+        <div class="footer text-center" style="font-family: Arial !important">
+            <p>Academic Management and Admission Division<br>
+                International Islamic University Malaysia Gombak Selangor Darul Ehsan<br>
+                Tel: 03 6196 4045/4043 Fax: 03 6196 4724</p>
         </div>
     </div>
 
+    <div class="page">
+        <br>
+        <br>
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td colspan="6" class="bg-black no-y"><strong>PART B: INFORMATION ON PREVIOUS INSTITUTION</strong>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <ol type="1">
+                        <li>
+                            Name of institution:
+                        </li><br>
+                        <li>
+                            Name of Diploma: <br>
+                            <div style="font-size: 12px">
+                                <i>(for transfer students)</i>
+                            </div>
+                        </li>
+                        <li>
+                            Name of Degree/Year of study/ Reason for leaving:
+                        </li><br>
+                        <li>
+                            Highest Qualification & CGPA <i style="font-size: 13px">(where applicable)</i>
+                        </li>
+                    </ol>
+                </td>
+            </tr>
+            <tr class="bg-black">
+                <td colspan="6" class="no-y">
+                    PART C: LIST OF COURSES TO BE CONSIDERED FOR CREDIT TRANSFER<br>
+                    <div style="font-size: 12px">
+                        <i>
+                            (Please attach ALL copies of the relevant course outlines/syllabus/description)
+                        </i>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="no-y">Subjects taken in previous institution (Please fill in the information
+                    accordingly)</td>
+            </tr>
+
+            <tr class="bg-grey" style="font-weight: bold;">
+                <td class="text-center no-y" style="vertical-align: text-top; width: 30px">
+                    No
+                </td>
+                <td class="text-center no-y">
+                    Course Code
+                    <div style="font-size: 12px; font-style: italic; font-weight: normal; vertical-align: text-top;">
+                        (as stated in theapplicant’s transcript)
+                    </div>
+                </td>
+                <td class="text-center no-y">
+                    Code Title
+                    <div style="font-size: 12px; font-style: italic; font-weight: normal; vertical-align: text-top;">
+                        (as stated in the applicant’s transcript)
+                    </div>
+                </td>
+                <td class="text-center no-y" style="vertical-align: text-top;">
+                    Credit Hours
+                </td>
+                <td class="text-center no-y" style="vertical-align: text-top;">
+                    Grade Obtained
+                </td>
+                <td class="text-center no-y" style="vertical-align: text-top; width: 175px">
+                    Course Code
+                    <div style="font-size: 12px; font-style: italic; font-weight: normal; vertical-align: text-top;">
+                        (as offered by IIUM)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @for ($i = 0; $i < 17; $i++)
+                <tr>
+                    <td><br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            @endfor
+        </table>
+        <strong>
+            NOTE: <i><u>Incomplete application will not be entertained</u></i>
+        </strong>
+        <br><br>
+        I certify that the above and attached information is <strong>TRUE</strong>.
+        <br><br>
+        Applicant’s signature: ....................................<br>
+        Date: .............................
+
+        <div></div>
+        <div class="footer text-center" style="font-family: Arial !important">
+            <p>Academic Management and Admission Division<br>
+                International Islamic University Malaysia Gombak Selangor Darul Ehsan<br>
+                Tel: 03 6196 4045/4043 Fax: 03 6196 4724</p>
+        </div>
+    </div>
 </body>
 
 </html>
@@ -249,7 +367,7 @@
 
     .page {
         width: 100%;
-        page-break-after: always;
+        /* page-break-after: always; */
     }
 
     .container {
@@ -299,6 +417,11 @@
         color: white;
     }
 
+    .bg-grey {
+        background-color: #DFDFDF;
+        color: black;
+    }
+
     .criteria-list li {
         margin-bottom: 0.25rem;
     }
@@ -326,6 +449,15 @@
     .footer {
         margin-top: 2rem;
         font-size: 10px;
+
+        position: absolute;
+        bottom: 0;
+        /* Anchors footer to the bottom */
+        width: 100%;
+        /* Ensures it spans the width of the page */
+        text-align: center;
+        /* Center text */
+        margin-bottom: 20px;
     }
 
     .input-group {
@@ -341,5 +473,13 @@
     .input-group textarea {
         width: 100%;
         padding: 0.5rem;
+    }
+
+    .no-y {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
     }
 </style>
