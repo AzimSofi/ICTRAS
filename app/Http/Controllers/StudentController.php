@@ -37,16 +37,26 @@ class StudentController extends Controller
         $previousInstitution = PreviousInstitution::where('matric_no', Auth::user()->matric_no)->firstOrFail();
         $previousInstitution->update($request->all());
 
-        return redirect()
-            ->route('applications.index')
-            ->with('success', 'Previous institution has been updated.');
+        return redirect()->route('applications.index')->with('success', 'Previous institution has been updated.');
     }
 
     public function print()
     {
         $data = [];
-
         $pdf = App::make('dompdf.wrapper');
+        $pdf->setPaper('a4', 'portrait');
+
+        // Margins
+        /*$pdf->setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            'margin_left' => 0,
+            'margin_right' => 0,
+            'margin_top' => 0,
+            'margin_bottom' => 0,
+        ]);*/
+
+        // Render
         $view = view('student.print', $data)->render();
         $pdf->loadHTML($view);
         return $pdf->stream('student_print_form.pdf');
