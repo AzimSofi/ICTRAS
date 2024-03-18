@@ -214,12 +214,71 @@
                 <td colspan="2">
                     <div style="margin-left: 22.5px">
                         <br>
-                        1. Name : <br>
-                        2. Matric No, : <br>
-                        3. Programme : <br>
-                        4. Email : ... 5. Tel/Hp No. : ...<br>
-                        6. Postal Address : <br>
-                        7. Correspondance :<br>Address
+                        {{-- Name --}}
+                        <div style="width: 100%">
+                            <div style="float: left; width: 20%">
+                                1. <span style="margin-left: 20px;">Name</span>
+                            </div>
+                            <div style="float: right; width: 80%">
+                                : {{ $user->name }}
+                            </div>
+                        </div><div style="clear: both;"></div>
+
+                        {{-- Matric no. --}}
+                        <div style="width: 100%">
+                            <div style="float: left; width: 20%">
+                                2. <span style="margin-left: 20px;">Matric No,</span>
+                            </div>
+                            <div style="float: right; width: 80%">
+                                : {{ $user->matric_no }}
+                            </div>
+                        </div><div style="clear: both;"></div>
+
+                        {{-- Programme --}}
+                        <div style="width: 100%">
+                            <div style="float: left; width: 20%">
+                                3. <span style="margin-left: 20px;">Programme</span>
+                            </div>
+                            <div style="float: right; width: 80%">
+                                : {{ $user->department->name }}
+                            </div>
+                        </div><div style="clear: both;"></div>
+
+                        {{-- Email and phone no. --}}
+                        <div style="width: 100%;">
+                            {{-- <div style="float: left; width: 50%;"> --}}
+                                <div style="float: left; width: 20%">
+                                    4. <span style="margin-left: 20px;">Email</span>
+                                </div>
+                                <div style="float: left; width: 30%">
+                                    : {{ $user->email }}
+                                </div>
+                            {{-- </div> --}}
+                            <div style="float: right; width: 50%;">
+                                5. Tel/Hp No.: {{ $user->phone_number }}
+                            </div>
+                        </div><div style="clear: both;"></div>
+
+                        {{-- Postal Address --}}
+                        <div style="width: 100%">
+                            <div style="float: left; width: 20%">
+                                6. <span style="margin-left: 20px;">Postal Address</span>
+                            </div>
+                            <div style="float: right; width: 80%">
+                                :
+                            </div>
+                        </div><div style="clear: both;"></div>
+                        <br>
+
+                        {{-- Correspondance Address --}}
+                        <div style="width: 100%">
+                            <div style="float: left; width: 20%">
+                                7. <span style="margin-left: 20px;">Correspondance<br><span style="margin-left: 35px;">Address</span></span>
+                            </div>
+                            <div style="float: right; width: 80%">
+                                :
+                            </div>
+                        </div><div style="clear: both;"></div>
                         <br><br>
                     </div>
                 </td>

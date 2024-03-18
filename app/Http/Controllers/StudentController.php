@@ -42,7 +42,7 @@ class StudentController extends Controller
 
     public function print()
     {
-        $data = [];
+        $data = ['user' => Auth::user()];
         $pdf = App::make('dompdf.wrapper');
         $pdf->setPaper('a4', 'portrait');
 
