@@ -7,7 +7,7 @@
     <a href="{{ route('endorsed_courses.index') }}" class="list-group-item list-group-item-action">Endorsed Courses</a>
     <a href="{{ route('student_management.index') }}" class="list-group-item list-group-item-action">Student
         Management</a>
-    <a href="#" class="list-group-item list-group-item-action">Print Out</a>
+    <a href="{{ route('admin.student-application.index') }}" class="list-group-item list-group-item-action">Student's Application</a>
     {{-- <a class="list-group-item list-group-item-action disabled">A disabled link item</a> --}}
 </div>
 <style>

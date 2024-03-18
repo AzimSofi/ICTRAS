@@ -30,6 +30,30 @@ class ApplicationSeeder extends Seeder
                 'grade_obtained' => 'A',
                 'status' => '1',
             ],
+            [
+                'user' => '2010613',
+                'course_code' => 'ABC1234',
+                'course_name' => 'Math 1',
+                'credit_hours' => '3',
+                'grade_obtained' => 'C',
+                'status' => null,
+            ],
+            [
+                'user' => '202020',
+                'course_code' => 'ABC1234',
+                'course_name' => 'Math 1',
+                'credit_hours' => '3',
+                'grade_obtained' => 'B',
+                'status' => null,
+            ],
+            [
+                'user' => '2010613',
+                'course_code' => 'DEF5678',
+                'course_name' => 'Math 2',
+                'credit_hours' => '3',
+                'grade_obtained' => 'A',
+                'status' => null,
+            ],
         ];
 
         foreach ($applications as $data) {

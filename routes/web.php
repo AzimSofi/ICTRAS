@@ -24,6 +24,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('users', App\Http\Controllers\UserController::class);
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::get('admin/student\'s_application', [App\Http\Controllers\AdminController::class, 'studentApplication'])->name('admin.student-application.index');
+Route::post('/admin/student-application/{application}/approve', [App\Http\Controllers\AdminController::class, 'applicationApprove'])->name('admin.student-application.approve');
+Route::post('/admin/student-application/{application}/disapprove', [App\Http\Controllers\AdminController::class, 'applicationDisapprove'])->name('admin.student-application.disapprove');
 Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
 
 Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class);
