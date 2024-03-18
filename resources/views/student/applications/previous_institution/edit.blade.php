@@ -29,7 +29,7 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="degree_or_diploma_name" class="form-label">Degre or diploma name</label>
+                                <label for="degree_or_diploma_name" class="form-label">Degree or diploma name</label>
                                 <input type="text" class="form-control" id="degree_or_diploma_name"
                                     name="degree_or_diploma_name" required
                                     value="{{ $user->previousInstitution->degree_or_diploma_name ?? "" }}">

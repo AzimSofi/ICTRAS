@@ -48,6 +48,17 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Muhammad Azim Iskandar Bin Mohd Sofi',
+                'matric_no' => '2010613',
+                'password' => Hash::make('20106132010613'),
+                'email' => 'azim.sofi@live.iium.com.my',
+                'profile_picture' => '2010613.png',
+                'department_id' => 1,
+                'phone_number' => '0193100784',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         foreach ($users as $data) {

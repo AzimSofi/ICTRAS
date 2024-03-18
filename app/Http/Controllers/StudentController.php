@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Models\Department;
 use App\Models\PreviousInstitution;
 use Illuminate\Http\Request;
@@ -42,7 +43,15 @@ class StudentController extends Controller
 
     public function print()
     {
-        $data = ['user' => Auth::user()];
+        // Query user's application
+        $user = Auth::user();
+        $applications = Application::all();
+        $userMatricNo = $user->matric_no;
+        $applications = Application::whereHas('user', function ($query) use ($userMatricNo) {
+            $query->where('matric_no', $userMatricNo);
+        })->get();
+
+        $data = ['user' => $user, 'applications' => $applications];
         $pdf = App::make('dompdf.wrapper');
         $pdf->setPaper('a4', 'portrait');
 

@@ -220,9 +220,10 @@
                                 1. <span style="margin-left: 20px;">Name</span>
                             </div>
                             <div style="float: right; width: 80%">
-                                : {{ $user->name }}
+                                : {{ $user->name ?? '' }}
                             </div>
-                        </div><div style="clear: both;"></div>
+                        </div>
+                        <div style="clear: both;"></div>
 
                         {{-- Matric no. --}}
                         <div style="width: 100%">
@@ -230,9 +231,10 @@
                                 2. <span style="margin-left: 20px;">Matric No,</span>
                             </div>
                             <div style="float: right; width: 80%">
-                                : {{ $user->matric_no }}
+                                : {{ $user->matric_no ?? '' }}
                             </div>
-                        </div><div style="clear: both;"></div>
+                        </div>
+                        <div style="clear: both;"></div>
 
                         {{-- Programme --}}
                         <div style="width: 100%">
@@ -240,24 +242,26 @@
                                 3. <span style="margin-left: 20px;">Programme</span>
                             </div>
                             <div style="float: right; width: 80%">
-                                : {{ $user->department->name }}
+                                : {{ $user->department->name ?? '' }}
                             </div>
-                        </div><div style="clear: both;"></div>
+                        </div>
+                        <div style="clear: both;"></div>
 
                         {{-- Email and phone no. --}}
                         <div style="width: 100%;">
                             {{-- <div style="float: left; width: 50%;"> --}}
-                                <div style="float: left; width: 20%">
-                                    4. <span style="margin-left: 20px;">Email</span>
-                                </div>
-                                <div style="float: left; width: 30%">
-                                    : {{ $user->email }}
-                                </div>
+                            <div style="float: left; width: 20%">
+                                4. <span style="margin-left: 20px;">Email</span>
+                            </div>
+                            <div style="float: left; width: 30%">
+                                : {{ $user->email }}
+                            </div>
                             {{-- </div> --}}
                             <div style="float: right; width: 50%;">
-                                5. Tel/Hp No.: {{ $user->phone_number }}
+                                5. Tel/Hp No.: {{ $user->phone_number ?? '' }}
                             </div>
-                        </div><div style="clear: both;"></div>
+                        </div>
+                        <div style="clear: both;"></div>
 
                         {{-- Postal Address --}}
                         <div style="width: 100%">
@@ -267,18 +271,21 @@
                             <div style="float: right; width: 80%">
                                 :
                             </div>
-                        </div><div style="clear: both;"></div>
+                        </div>
+                        <div style="clear: both;"></div>
                         <br>
 
                         {{-- Correspondance Address --}}
                         <div style="width: 100%">
                             <div style="float: left; width: 20%">
-                                7. <span style="margin-left: 20px;">Correspondance<br><span style="margin-left: 35px;">Address</span></span>
+                                7. <span style="margin-left: 20px;">Correspondance<br><span
+                                        style="margin-left: 35px;">Address</span></span>
                             </div>
                             <div style="float: right; width: 80%">
                                 :
                             </div>
-                        </div><div style="clear: both;"></div>
+                        </div>
+                        <div style="clear: both;"></div>
                         <br><br>
                     </div>
                 </td>
@@ -311,19 +318,38 @@
                 <td colspan="6">
                     <ol type="1">
                         <li>
-                            Name of institution:
+                            Name of institution: {{ $user->previousInstitution->name ?? '' }}
                         </li><br>
                         <li>
-                            Name of Diploma: <br>
+                            Name of Diploma:
+                            @if (!$user->previousInstitution->degree_status)
+                                {{ $user->previousInstitution->degree_or_diploma_name ?? '' }}
+                            @else
+                                -
+                            @endif
+                            <br>
                             <div style="font-size: 12px">
                                 <i>(for transfer students)</i>
                             </div>
                         </li>
                         <li>
                             Name of Degree/Year of study/ Reason for leaving:
+                            @if ($user->previousInstitution->degree_status)
+                                {{ $user->previousInstitution->degree_or_diploma_name ?? '' }}
+                            @else
+                                -
+                            @endif
+                            /
+                            {{ $user->previousInstitution->year_of_study ?? '' }} /
+                            @if ($user->previousInstitution->degree_status)
+                                {{ $user->previousInstitution->reason_of_leaving }}
+                            @else
+                                -
+                            @endif
                         </li><br>
                         <li>
-                            Highest Qualification & CGPA <i style="font-size: 13px">(where applicable)</i>
+                            Highest Qualification & CGPA <i style="font-size: 13px">(where applicable)</i>:
+                            {{ $user->previousInstitution->cgpa ?? '' }}
                         </li>
                     </ol>
                 </td>
@@ -339,7 +365,8 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="6" class="no-y">Subjects taken in previous institution (Please fill in the information
+                <td colspan="6" class="no-y">Subjects taken in previous institution (Please fill in the
+                    information
                     accordingly)</td>
             </tr>
 
@@ -372,17 +399,25 @@
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td><br></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            @for ($i = 0; $i < 17; $i++)
+            @php
+                $totalRows = 18;
+                $filledRows = count($applications);
+                $emptyRowsNeeded = $totalRows - $filledRows;
+            @endphp
+            @foreach ($applications as $application)
                 <tr>
-                    <td><br></td>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td class="text-center">{{ $application->course_code }}</td>
+                    <td class="text-center">{{ $application->course_name }}</td>
+                    <td class="text-center">{{ $application->credit_hours }}</td>
+                    <td class="text-center">{{ $application->grade_obtained }}</td>
+                    <td class="text-center">{{ $application->getEndorsedCourseCode() }}</td>
+                </tr>
+            @endforeach
+
+            @for ($i = 0; $i < $emptyRowsNeeded; $i++)
+                <tr>
+                    <td class="text-center">{{ $filledRows + $i + 1 }}</td> {{-- Increment counter for visual consistency --}}
                     <td></td>
                     <td></td>
                     <td></td>

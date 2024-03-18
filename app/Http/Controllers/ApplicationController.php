@@ -112,7 +112,9 @@ class ApplicationController extends Controller
     public function destroy(Application $application)
     {
         $application->delete();
-        return redirect()->route('applications.index')->with('success', 'Course has been deleted.');
+        return redirect()->route('applications.index')
+                 ->with('success', 'Course has been deleted.')
+                 ->with('activeTab', 'applications');
     }
 
     public function evaluateCourse(Application $application)
