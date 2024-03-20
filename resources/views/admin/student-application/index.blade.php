@@ -22,6 +22,7 @@
         <thead>
             <tr>
                 <th scope="col">No.</th>
+                <th scope="col">Student</th>
                 <th scope="col">Course Code</th>
                 <th scope="col">Course Title</th>
                 <th scope="col" class="text-center">Credit Hours</th>
@@ -33,6 +34,7 @@
             @foreach ($applications as $application)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $application->user }}</td>
                     <td>{{ $application->course_code }}</td>
                     <td>{{ $application->course_name }}</td>
                     <td class="text-center">{{ $application->credit_hours }}</td>
