@@ -42,7 +42,7 @@
                     <td>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="align-self-center">
-                                <a href="{{ route('student_management.print') }}">
+                                <a href="{{ route('student.print', $user) }}">
                                     <i class="fas fa-light fa-print fa-lg icon-hover"></i>
                                 </a>
                             </div>

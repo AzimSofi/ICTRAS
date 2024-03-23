@@ -26,14 +26,25 @@
 <body>
     <div class="container mt-5 pt-3">
         <div class="row">
-            <div class="col-lg-3">
+            <div id="sidebar" class="col-lg-3">
                 @include('admin.sidebar')
             </div>
-            <div class="col-lg-9">
+            <div id="main-content" class="col-lg-9">
                 @yield('content')
+                <button id="toggleSidebar">Toggle Sidebar</button>
+                <div style="margin-bottom: 50px"></div>
             </div>
         </div>
     </div>
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function() {
+        $('#toggleSidebar').click(function() {
+            $('#sidebar').toggleClass('hidden');
+            $('#main-content').toggleClass('col-lg-9 col-lg-12');
+        });
+    });
+</script>

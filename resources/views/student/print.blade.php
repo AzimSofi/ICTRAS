@@ -322,7 +322,7 @@
                         </li><br>
                         <li>
                             Name of Diploma:
-                            @if (!$user->previousInstitution->degree_status)
+                            @if ($user->previousInstitution && !$user->previousInstitution->degree_status)
                                 {{ $user->previousInstitution->degree_or_diploma_name ?? '' }}
                             @else
                                 -
@@ -334,14 +334,14 @@
                         </li>
                         <li>
                             Name of Degree/Year of study/ Reason for leaving:
-                            @if ($user->previousInstitution->degree_status)
+                            @if ($user->previousInstitution && $user->previousInstitution->degree_status)
                                 {{ $user->previousInstitution->degree_or_diploma_name ?? '' }}
                             @else
                                 -
                             @endif
                             /
                             {{ $user->previousInstitution->year_of_study ?? '' }} /
-                            @if ($user->previousInstitution->degree_status)
+                            @if ($user->previousInstitution && $user->previousInstitution->degree_status)
                                 {{ $user->previousInstitution->reason_of_leaving }}
                             @else
                                 -

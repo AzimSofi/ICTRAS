@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Department;
 use App\Models\PreviousInstitution;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
@@ -41,10 +42,14 @@ class StudentController extends Controller
         return redirect()->route('applications.index')->with('success', 'Previous institution has been updated.');
     }
 
-    public function print()
+    public function print(User $user = null)
     {
+        // dd($user);
+        if ($user == null) {
+            $user = Auth::user();
+        }
         // Query user's application
-        $user = Auth::user();
+
         $applications = Application::all();
         $userMatricNo = $user->matric_no;
         $applications = Application::whereHas('user', function ($query) use ($userMatricNo) {

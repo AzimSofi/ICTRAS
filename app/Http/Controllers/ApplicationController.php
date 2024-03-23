@@ -40,11 +40,9 @@ class ApplicationController extends Controller
             } elseif (strtolower($search) === 'disapproved') {
                 $applications = $applications->orWhere('status', false);
             }
-
-            $applications = $applications->get();
-        } else {
-            $applications = Application::all();
         }
+
+        $applications = $applications->get();
 
         if (auth()->user()->hasRole('student')) {
             return view('student.applications.index', compact('user', 'applications'));

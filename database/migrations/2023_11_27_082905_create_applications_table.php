@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string("user");
             $table->string("course_code");
             $table->string("course_name");
+            $table->string("iium_course_code");
             $table->float("credit_hours");
             $table->char("grade_obtained");
             $table->boolean("status")->nullable();
