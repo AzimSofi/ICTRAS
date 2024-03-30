@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('university');
-            // $table->string('course_name');
             $table->integer('department_id');
             $table->string('course_name');
+            $table->string('course_code');
             $table->string('endorsed_course_name');
+            $table->string('endorsed_course_code');
             $table->boolean('status');
         });
     }

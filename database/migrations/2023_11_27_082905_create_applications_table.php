@@ -13,9 +13,10 @@ return new class extends Migration {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->string("user");
-            $table->string("course_code");
-            $table->string("course_name");
-            $table->string("iium_course_code");
+            $table->string('course_name');
+            $table->string('course_code');
+            $table->string('endorsed_course_name');
+            $table->string('endorsed_course_code');
             $table->float("credit_hours");
             $table->char("grade_obtained");
             $table->boolean("status")->nullable();
