@@ -15,13 +15,6 @@
                         required value="{{ $application->course_name ?? '' }}">
                 </div>
                 <div class="mb-3">
-                    <label for="credit_hours{{ $application->id }}" class="form-label">Credit hours</label>
-                    <input type="text" class="form-control" id="credit_hours{{ $application->id }}" name="credit_hours"
-                        required value="{{ $application->credit_hours ?? '' }}">
-                </div>
-            </div>
-            <div class="col">
-                <div class="mb-3">
                     <label for="grade_obtained{{ $application->id }}" class="form-label">Grade obtained</label>
                     <select class="form-select" id="grade_obtained{{ $application->id }}" name="grade_obtained"
                         required>
@@ -33,7 +26,23 @@
                         <option value="F" {{ $application->grade_obtained == 'F' ? 'selected' : '' }}>F</option>
                     </select>
                 </div>
-
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="endorsed_course_code{{ $application->id }}" class="form-label">IIUM Course code</label>
+                    <input type="text" class="form-control" id="endorsed_course_code{{ $application->id }}" name="endorsed_course_code"
+                        required value="{{ $application->endorsed_course_code ?? '' }}">
+                </div>
+                <div class="mb-3">
+                    <label for="endorsed_course_name{{ $application->id }}" class="form-label">IIUM Course name</label>
+                    <input type="text" class="form-control" id="endorsed_course_name{{ $application->id }}" name="endorsed_course_name"
+                        required value="{{ $application->endorsed_course_name ?? '' }}">
+                </div>
+                <div class="mb-3">
+                    <label for="credit_hours{{ $application->id }}" class="form-label">Credit hours</label>
+                    <input type="text" class="form-control" id="credit_hours{{ $application->id }}" name="credit_hours"
+                        required value="{{ $application->credit_hours ?? '' }}">
+                </div>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>

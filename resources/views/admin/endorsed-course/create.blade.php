@@ -17,22 +17,12 @@
                                 <input type="text" class="form-control" id="university" name="university" required>
                             </div>
                             <div class="mb-3">
-                                <label for="department_id" class="form-label">Department</label>
-                                <select id="department_id" name="department_id" class="form-select">
-                                    @foreach ($departments as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="course_code" class="form-label">Course Code</label>
+                                <input type="text" class="form-control" id="course_code" name="course_code" required>
                             </div>
                             <div class="mb-3">
                                 <label for="course_name" class="form-label">Course Name</label>
                                 <input type="text" class="form-control" id="course_name" name="course_name" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="endorsed_course_name" class="form-label">Endorsed Course Name</label>
-                                <input type="text" class="form-control" id="endorsed_course_name" name="endorsed_course_name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
@@ -41,6 +31,25 @@
                                     <option value="0">DISAPPROVED</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="department_id" class="form-label">Department</label>
+                                <select id="department_id" name="department_id" class="form-select">
+                                    @foreach ($departments as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endorsed_course_code" class="form-label">Endorsed Course Code</label>
+                                <input type="text" class="form-control" id="endorsed_course_code" name="endorsed_course_code" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endorsed_course_name" class="form-label">Endorsed Course Name</label>
+                                <input type="text" class="form-control" id="endorsed_course_name" name="endorsed_course_name" required>
+                            </div>
+
                         </div>
                     </div>
                 </div>

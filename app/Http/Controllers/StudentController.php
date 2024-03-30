@@ -44,11 +44,14 @@ class StudentController extends Controller
 
     public function print(User $user = null)
     {
-        // dd($user);
-        if ($user == null) {
+        if ($user == null && Auth::user()->hasRole("student")) {
             $user = Auth::user();
         }
-        // Query user's application
+
+        /* DEBUG
+        if (Auth::user()->hasRole("admin")) {
+            dd($user);
+        }*/
 
         $applications = Application::all();
         $userMatricNo = $user->matric_no;

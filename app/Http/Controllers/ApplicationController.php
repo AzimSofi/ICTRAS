@@ -18,31 +18,35 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $applications = Application::all();
 
-        // Filter by user's matric no
-        $userMatricNo = $user->matric_no;
-        $applications = Application::whereHas('user', function ($query) use ($userMatricNo) {
-            $query->where('matric_no', $userMatricNo);
-        });
+        // Start the query
+        $applicationsQuery = Application::query();
 
-        // Filter by user's search bar
+        // Assuming 'user' column stores 'matric_no' or a similar identifier
+        // Filter by user's identifier
+        $applicationsQuery->where('user', $user->matric_no);
+
+        // Filter by user's search bar input
         $search = $request->input('search');
         if ($search) {
-            $applications = Application::where('code', 'like', "%{$search}%")
-                ->orWhere('name', 'like', "%{$search}%")
-                ->orWhere('credit_hours', 'like', "%{$search}%")
-                ->orWhereHas('grade_obtained', function ($query) use ($search) {
-                    $query->where('name', 'like', "%{$search}%");
-                });
-            if (strtolower($search) === 'approved') {
-                $applications = $applications->orWhere('status', true);
-            } elseif (strtolower($search) === 'disapproved') {
-                $applications = $applications->orWhere('status', false);
-            }
+            $applicationsQuery->where(function ($query) use ($search) {
+                $query
+                    ->where('course_name', 'like', "%{$search}%")
+                    ->orWhere('course_code', 'like', "%{$search}%")
+                    ->orWhere('endorsed_course_name', 'like', "%{$search}%")
+                    ->orWhere('endorsed_course_code', 'like', "%{$search}%")
+                    ->orWhere('credit_hours', 'like', "%{$search}%")
+                    ->orWhere('grade_obtained', 'like', "%{$search}%");
+
+                if (strtolower($search) === 'approved') {
+                    $query->orWhere('status', true);
+                } elseif (strtolower($search) === 'disapproved') {
+                    $query->orWhere('status', false);
+                }
+            });
         }
 
-        $applications = $applications->get();
+        $applications = $applicationsQuery->get();
 
         if (auth()->user()->hasRole('student')) {
             return view('student.applications.index', compact('user', 'applications'));
@@ -70,9 +74,7 @@ class ApplicationController extends Controller
         $application = Application::create($input);
 
         $this->evaluateCourse($application);
-        return redirect()->route('applications.index')
-                 ->with('success', 'Course has been added.')
-                 ->with('activeTab', 'applications');
+        return redirect()->route('applications.index')->with('success', 'Course has been added.')->with('activeTab', 'applications');
     }
 
     /**
@@ -99,9 +101,7 @@ class ApplicationController extends Controller
         $application->update($request->all());
         $this->evaluateCourse($application);
 
-        return redirect()->route('applications.index')
-                 ->with('success', 'Course has been updated.')
-                 ->with('activeTab', 'applications');
+        return redirect()->route('applications.index')->with('success', 'Course has been updated.')->with('activeTab', 'applications');
     }
 
     /**
@@ -110,22 +110,30 @@ class ApplicationController extends Controller
     public function destroy(Application $application)
     {
         $application->delete();
-        return redirect()->route('applications.index')
-                 ->with('success', 'Course has been deleted.')
-                 ->with('activeTab', 'applications');
+        return redirect()->route('applications.index')->with('success', 'Course has been deleted.')->with('activeTab', 'applications');
     }
 
     public function evaluateCourse(Application $application)
-{
-        $courseFullName = strtolower($application->course_code . ' - ' . $application->course_name);
-        $isEndorsed = EndorsedCourse::where(DB::raw('LOWER(course_name)'), $courseFullName)->exists(); // Check if the concatenated courseFullName exists in the endorsed_courses
+    {
+        // Compare values in lowercase for case-insensitive comparison
+        $courseCode = strtolower($application->course_code);
+        $courseName = strtolower($application->course_name);
+        $endorsedCourseCode = strtolower($application->endorsed_course_code);
+        $endorsedCourseName = strtolower($application->endorsed_course_name);
 
-        if ($isEndorsed) {
-            $application->status = true;
-            $application->save();
+        // Find a matching EndorsedCourse record
+        $endorsedCourse = EndorsedCourse::where(DB::raw('LOWER(course_code)'), $courseCode)
+            ->where(DB::raw('LOWER(course_name)'), $courseName)
+            ->where(DB::raw('LOWER(endorsed_course_code)'), $endorsedCourseCode)
+            ->where(DB::raw('LOWER(endorsed_course_name)'), $endorsedCourseName)
+            ->first(); // Use first() to get the actual model instance if it exists
+
+        if ($endorsedCourse) {
+            $application->status = $endorsedCourse->status;
         } else {
             $application->status = null;
-            $application->save();
         }
+
+        $application->save();
     }
 }

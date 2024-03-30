@@ -109,8 +109,10 @@
                         <th scope="col">No.</th>
                         <th scope="col">Course code</th>
                         <th scope="col">Course name</th>
-                        <th scope="col">Credit hours</th>
                         <th scope="col">Grade Obtained</th>
+                        <th scope="col">IIUM Course code</th>
+                        <th scope="col">IIUM Course name</th>
+                        <th scope="col">Credit hours</th>
                         <th scope="col">Status</th>
                         <th scope="col" style="width: 7%">Action</th>
                     </tr>
@@ -121,8 +123,10 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $application?->course_code }}</td>
                             <td>{{ $application?->course_name }}</td>
-                            <td>{{ $application?->credit_hours }}</td>
                             <td>{{ $application?->grade_obtained }}</td>
+                            <td>{{ $application?->endorsed_course_code }}</td>
+                            <td>{{ $application?->endorsed_course_name }}</td>
+                            <td>{{ $application?->credit_hours }}</td>
                             <td>
                                 @if (is_null($application?->status))
                                     PROCESSING REQUEST
@@ -150,7 +154,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="7">
+                            <td colspan="9">
                                 <div class="collapse edit-form" id="editCourse{{ $application->id }}">
                                     @include('student.applications.edit')
                                 </div>

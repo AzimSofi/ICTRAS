@@ -29,7 +29,9 @@
                 <th scope="col">No.</th>
                 <th scope="col">University</th>
                 <th scope="col">Department</th>
+                <th scope="col">Course code</th>
                 <th scope="col">Course name</th>
+                <th scope="col">Endorsed course code</th>
                 <th scope="col">Endorsed course name</th>
                 <th scope="col">Status</th>
             </tr>
@@ -40,7 +42,9 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $endorsed_course->university }}</td>
                     <td>{{ $endorsed_course->department->name }}</td>
+                    <td>{{ $endorsed_course->course_code }}</td>
                     <td>{{ $endorsed_course->course_name }}</td>
+                    <td>{{ $endorsed_course->endorsed_course_code }}</td>
                     <td>{{ $endorsed_course->endorsed_course_name }}</td>
                     <td>{{ $endorsed_course->status ? 'APPROVED' : 'DISAPPROVED' }}</td>
                 </tr>

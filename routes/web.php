@@ -26,7 +26,7 @@ Route::resource('users', App\Http\Controllers\UserController::class);
 
 // Admin
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
-Route::get('admin/student\'s_application', [App\Http\Controllers\AdminController::class, 'studentApplication'])->name('admin.student-application.index');
+Route::get('admin/students_application', [App\Http\Controllers\AdminController::class, 'studentApplication'])->name('admin.student-application.index');
 Route::post('/admin/student-application/{application}/approve', [App\Http\Controllers\AdminController::class, 'applicationApprove'])->name('admin.student-application.approve');
 Route::post('/admin/student-application/{application}/disapprove', [App\Http\Controllers\AdminController::class, 'applicationDisapprove'])->name('admin.student-application.disapprove');
 Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
@@ -39,6 +39,6 @@ Route::get('userlogs', [App\Http\Controllers\UserlogController::class, 'index'])
 
 Route::post('previous_institution/create', [App\Http\Controllers\StudentController::class, 'createPreviousInstitution'])->name('student.createPreviousInstitution');
 Route::post('previous_institution/edit', [App\Http\Controllers\StudentController::class, 'editPreviousInstitution'])->name('student.editPreviousInstitution');
-Route::get('print_form/{user}', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print');
+Route::get('print_form/{user}', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print.fromAdmin');
 Route::get('print_form', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print');
 Route::resource('applications', App\Http\Controllers\ApplicationController::class);

@@ -411,7 +411,7 @@
                     <td class="text-center">{{ $application->course_name }}</td>
                     <td class="text-center">{{ $application->credit_hours }}</td>
                     <td class="text-center">{{ $application->grade_obtained }}</td>
-                    <td class="text-center">{{ $application->getEndorsedCourseCode() }}</td>
+                    <td class="text-center">{{ $application->endorsed_course_code }}</td>
                 </tr>
             @endforeach
 

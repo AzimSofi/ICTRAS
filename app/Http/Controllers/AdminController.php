@@ -12,18 +12,37 @@ class AdminController extends Controller
     public function index()
     {
         $user = Auth::user();
-            if (auth()->user()->hasRole("admin")) {
-            return view("admin.index", compact("user"));
+        if (auth()->user()->hasRole('admin')) {
+            return view('admin.index', compact('user'));
         } else {
-            return view("home");
+            return view('home');
         }
     }
 
-    public function studentApplication()
+    public function studentApplication(Request $request)
     {
-        $applications = Application::where('status', null)->get();
+        // Start the query builder for applications with a default condition
+        $applicationsQuery = Application::where('status', null);
 
-        return view ("admin.student-application.index", compact("applications"));
+        // Capture the search query from the request
+        $search = $request->input('search');
+
+        // Check if there's a search query
+        if (!empty($search)) {
+            $applicationsQuery->where(function ($query) use ($search) {
+                $query
+                    ->where('course_code', 'like', "%{$search}%")
+                    ->orWhere('course_name', 'like', "%{$search}%")
+                    ->orWhere('endorsed_course_code', 'like', "%{$search}%")
+                    ->orWhere('endorsed_course_name', 'like', "%{$search}%")
+                    ->orWhere('user', 'like', "%{$search}%");
+            });
+        }
+
+        // Execute the query
+        $applications = $applicationsQuery->get();
+
+        return view('admin.student-application.index', compact('applications'));
     }
 
     public function applicationApprove(Application $application)

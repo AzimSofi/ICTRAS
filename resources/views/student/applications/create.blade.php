@@ -20,12 +20,6 @@
                                 <label for="course_name" class="form-label">Course Name</label>
                                 <input type="text" class="form-control" id="course_name" name="course_name" required>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="credit_hours" class="form-label">Credit hours</label>
-                                <input type="numer" class="form-control" id="credit_hours" name="credit_hours" required>
-                            </div>
                             <div class="mb-3">
                                 <label for="grade_obtained" class="form-label">Grade Obtained</label>
                                 <select class="form-select" id="grade_obtained" name="grade_obtained" required>
@@ -37,6 +31,21 @@
                                     <option value="F">F</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="endorsed_course_code" class="form-label">IIUM Course code</label>
+                                <input type="text" class="form-control" id="endorsed_course_code" name="endorsed_course_code" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endorsed_course_name" class="form-label">IIUM Course Name</label>
+                                <input type="text" class="form-control" id="endorsed_course_name" name="endorsed_course_name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="credit_hours" class="form-label">Credit hours</label>
+                                <input type="numer" class="form-control" id="credit_hours" name="credit_hours" required>
+                            </div>
+
                         </div>
                     </div>
                 </div>

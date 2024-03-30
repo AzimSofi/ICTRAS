@@ -13,14 +13,14 @@ class Application extends Model
 
     protected $table = 'applications';
 
-    protected $fillable = ['user', 'course_code', 'course_name', 'credit_hours', 'grade_obtained', 'status', 'iium_course_code'];
+    protected $fillable = ['user', 'course_code', 'course_name', 'credit_hours', 'endorsed_course_code', 'endorsed_course_name', 'grade_obtained', 'status'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user', 'matric_no');
     }
 
-    public function getEndorsedCourseName()
+    /* public function getEndorsedCourseName()
     {
         // Concatenate course_code and course_name from the application
         // and match it against course_name in endorsed_courses table
@@ -31,9 +31,9 @@ class Application extends Model
 
         // Return the endorsed course name, or null if not found
         return $endorsedCourse ? $endorsedCourse->endorsed_course_name : null;
-    }
+    } */
 
-    public function getEndorsedCourseCode()
+    /* public function getEndorsedCourseCode()
     {
         // Fetch the endorsed course based on the concatenated name of course_code and course_name
         $courseFullName = strtolower($this->course_code . ' - ' . $this->course_name);
@@ -46,5 +46,5 @@ class Application extends Model
         }
 
         return null; // Return null if no match is found
-    }
+    }*/
 }

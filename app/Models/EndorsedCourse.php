@@ -15,7 +15,9 @@ class EndorsedCourse extends Model
     protected $fillable = [
         'university',
         'department_id',
+        'course_code',
         'course_name',
+        'endorsed_course_code',
         'endorsed_course_name',
         'status',
     ];

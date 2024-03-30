@@ -14,30 +14,43 @@ class EndorsedCourseController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
-        $departments = Department::all();
+{
+    $departments = Department::all();
+    $search = $request->input('search');
+    $endorsed_courses = EndorsedCourse::query();
 
-        $search = $request->input('search');
-        if ($search) {
-            $endorsed_courses = EndorsedCourse::where('university', 'like', "%{$search}%")
-                ->orWhere('course_name', 'like', "%{$search}%")
-                ->orWhere('endorsed_course_name', 'like', "%{$search}%")
-                ->orWhereHas('department', function ($query) use ($search) {
-                    $query->where('name', 'like', "%{$search}%");
-                });
-            if (strtolower($search) === 'approved') {
-                $endorsed_courses = $endorsed_courses->orWhere('status', true);
-            } elseif (strtolower($search) === 'disapproved') {
-                $endorsed_courses = $endorsed_courses->orWhere('status', false);
-            }
+    if ($search) {
+        // Check if the search is specifically for 'approved' or 'disapproved' status
+        $searchLower = strtolower($search);
 
-            $endorsed_courses = $endorsed_courses->get();
-        } else {
-            $endorsed_courses = EndorsedCourse::all();
+        if (!(in_array($searchLower, ['approved', 'disapproved']))) {
+            // Apply search conditions only if not a status search
+            $endorsed_courses->where(function ($query) use ($search) {
+                $query
+                    ->where('university', 'like', "%{$search}%")
+                    ->orWhere('course_code', 'like', "%{$search}%")
+                    ->orWhere('course_name', 'like', "%{$search}%")
+                    ->orWhere('endorsed_course_code', 'like', "%{$search}%")
+                    ->orWhere('endorsed_course_name', 'like', "%{$search}%")
+                    ->orWhereHas('department', function ($subQuery) use ($search) {
+                        $subQuery->where('name', 'like', "%{$search}%");
+                    });
+            });
         }
 
-        return view('admin.endorsed-course.index', compact('endorsed_courses', 'departments'));
+        // Separately handle the status search to ensure it's applied to the whole query
+        if ($searchLower === 'approved') {
+            $endorsed_courses->where('status', true);
+        } elseif ($searchLower === 'disapproved') {
+            $endorsed_courses->where('status', false);
+        }
     }
+
+    $endorsed_courses = $endorsed_courses->get();
+
+    return view('admin.endorsed-course.index', compact('endorsed_courses', 'departments'));
+}
+
 
     /**
      * Show the form for creating a new resource.

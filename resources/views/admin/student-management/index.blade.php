@@ -9,7 +9,7 @@
 @section('content')
     <div class="row mb-4">
         <div class="col">
-            <form action="{{ route('student_management.index') }}" method="GET">
+            <form action="{{ route('admin.student-application.index') }}" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search for student..."
                         value="{{ request('search') }}">
@@ -42,7 +42,7 @@
                     <td>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="align-self-center">
-                                <a href="{{ route('student.print', $user) }}">
+                                <a href="{{ route('student.print.fromAdmin', $user) }}">
                                     <i class="fas fa-light fa-print fa-lg icon-hover"></i>
                                 </a>
                             </div>
