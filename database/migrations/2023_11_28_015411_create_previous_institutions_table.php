@@ -21,6 +21,9 @@ return new class extends Migration
             $table->integer('year_of_study');
             $table->string('reason_of_leaving');
             $table->float('cgpa');
+
+            $table->string('pdf_name')->nullable();
+            $table->binary('pdf_content')->nullable();
             $table->timestamps();
         });
     }

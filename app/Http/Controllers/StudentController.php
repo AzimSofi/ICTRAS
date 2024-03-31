@@ -44,7 +44,7 @@ class StudentController extends Controller
 
     public function print(User $user = null)
     {
-        if ($user == null && Auth::user()->hasRole("student")) {
+        if ($user == null && Auth::user()->hasRole('student')) {
             $user = Auth::user();
         }
 
@@ -77,5 +77,52 @@ class StudentController extends Controller
         $view = view('student.print', $data)->render();
         $pdf->loadHTML($view);
         return $pdf->stream('student_print_form.pdf');
+    }
+
+    // Previous study plan pdf
+    public function showUploadForm()
+    {
+        return view('pdf.upload');
+    }
+
+    public function storePreviousStudyPlan(Request $request)
+    {
+        $request->validate([
+            'pdf' => 'required|file|mimes:pdf|max:2048', // 2MB Max
+        ]);
+
+        // Ensure user is authenticated
+        if (!Auth::check()) {
+            return redirect()->back()->with('error', 'You must be logged in to perform this action.');
+        }
+
+        // Retrieve authenticated user's matric_no
+        $matricNo = Auth::user()->matric_no;
+
+        // Finding existing PreviousInstitution entry for the current user
+        $previousInstitution = PreviousInstitution::where('matric_no', $matricNo)->first();
+
+        if ($previousInstitution) {
+            $pdf = $request->file('pdf');
+            $pdfContent = file_get_contents($pdf->getRealPath());
+
+            $previousInstitution->pdf_name = $pdf->getClientOriginalName();
+            $previousInstitution->pdf_content = $pdfContent;
+            // dd($previousInstitution);
+            $previousInstitution->save();
+
+            return redirect()->route('pdf.upload')->with('success', 'PDF uploaded successfully.');
+        } else {
+            //
+            return redirect()->back()->with('warning', 'No matching record found.');
+        }
+    }
+
+    public function showPreviousStudyPlan(PreviousInstitution $previousInstitution)
+    {
+        return response()->make($previousInstitution->pdf_content, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $previousInstitution->pdf_name . '"',
+        ]);
     }
 }

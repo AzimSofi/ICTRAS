@@ -19,5 +19,8 @@ class PreviousInstitution extends Model
         'year_of_study',
         'reason_of_leaving',
         'cgpa',
+
+        'pdf_name',
+        'pdf_content',
     ];
 }

@@ -77,6 +77,15 @@
                             Add information
                         </button>
                     @endif
+                    <div class="mt-5">
+                        Insert:
+                        <form action="{{ route('previousStudyPlan.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="pdf" required>
+                            <button type="submit">Upload</button>
+                        </form>
+                    </div>
+
                 </div>
                 {{-- <div class="card-footer text-muted">
                     2 days ago

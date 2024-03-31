@@ -42,3 +42,8 @@ Route::post('previous_institution/edit', [App\Http\Controllers\StudentController
 Route::get('print_form/{user}', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print.fromAdmin');
 Route::get('print_form', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print');
 Route::resource('applications', App\Http\Controllers\ApplicationController::class);
+
+// Storing pdf
+Route::get('/previous-study-plans/upload', [App\Http\Controllers\StudentController::class, 'showUploadForm'])->name('previousStudyPlan.upload');
+Route::post('/previous-study-plans/upload', [App\Http\Controllers\StudentController::class, 'storePreviousStudyPlan'])->name('previousStudyPlan.store');
+Route::get('/previous-study-plans/{previousStudyPlan}', [App\Http\Controllers\StudentController::class, 'showPreviousStudyPlan'])->name('previousStudyPlan.show');
