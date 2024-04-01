@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Department;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        $departments = Department::all();
 
         // Start the query
         $applicationsQuery = Application::query();
@@ -33,6 +35,9 @@ class ApplicationController extends Controller
                 $query
                     ->where('course_name', 'like', "%{$search}%")
                     ->orWhere('course_code', 'like', "%{$search}%")
+                    ->orWhereHas('department', function ($subQuery) use ($search) {
+                        $subQuery->where('name', 'like', "%{$search}%");
+                    })
                     ->orWhere('endorsed_course_name', 'like', "%{$search}%")
                     ->orWhere('endorsed_course_code', 'like', "%{$search}%")
                     ->orWhere('credit_hours', 'like', "%{$search}%")
@@ -49,7 +54,7 @@ class ApplicationController extends Controller
         $applications = $applicationsQuery->get();
 
         if (auth()->user()->hasRole('student')) {
-            return view('student.applications.index', compact('user', 'applications'));
+            return view('student.applications.index', compact('user', 'applications', 'departments'));
         } else {
             return view('home');
         }
@@ -113,7 +118,7 @@ class ApplicationController extends Controller
         return redirect()->route('applications.index')->with('success', 'Course has been deleted.')->with('activeTab', 'applications');
     }
 
-    public function evaluateCourse(Application $application)
+    public static function evaluateCourse(Application $application)
     {
         // Compare values in lowercase for case-insensitive comparison
         $courseCode = strtolower($application->course_code);
@@ -124,6 +129,7 @@ class ApplicationController extends Controller
         // Find a matching EndorsedCourse record
         $endorsedCourse = EndorsedCourse::where(DB::raw('LOWER(course_code)'), $courseCode)
             ->where(DB::raw('LOWER(course_name)'), $courseName)
+            ->where('department_id', $application->department_id)
             ->where(DB::raw('LOWER(endorsed_course_code)'), $endorsedCourseCode)
             ->where(DB::raw('LOWER(endorsed_course_name)'), $endorsedCourseName)
             ->first(); // Use first() to get the actual model instance if it exists

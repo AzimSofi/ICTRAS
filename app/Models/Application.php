@@ -13,11 +13,16 @@ class Application extends Model
 
     protected $table = 'applications';
 
-    protected $fillable = ['user', 'course_code', 'course_name', 'credit_hours', 'endorsed_course_code', 'endorsed_course_name', 'grade_obtained', 'status'];
+    protected $fillable = ['user', 'course_code', 'course_name', 'department_id', 'credit_hours', 'endorsed_course_code', 'endorsed_course_name', 'grade_obtained', 'status'];
 
-    public function user()
+    public function relatedUser()
     {
         return $this->belongsTo(User::class, 'user', 'matric_no');
+    }
+
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
     }
 
     /* public function getEndorsedCourseName()

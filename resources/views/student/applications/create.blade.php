@@ -31,6 +31,14 @@
                                     <option value="F">F</option>
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="department_id" class="form-label">Department</label>
+                                <select id="department_id" name="department_id" class="form-select">
+                                    @foreach ($departments as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
@@ -45,7 +53,6 @@
                                 <label for="credit_hours" class="form-label">Credit hours</label>
                                 <input type="numer" class="form-control" id="credit_hours" name="credit_hours" required>
                             </div>
-
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->foreign('user')->references('matric_no')->on('users')->onDelete('cascade');
             $table->string('course_name');
             $table->string('course_code');
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->string('endorsed_course_name');
             $table->string('endorsed_course_code');
             $table->float("credit_hours");

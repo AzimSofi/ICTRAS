@@ -29,6 +29,7 @@
                 <th scope="col" class="text-center">Grade Obtained</th>
                 <th scope="col">IIUM Course Code</th>
                 <th scope="col">IIUM Course Name</th>
+                <th scope="col">Department</th>
                 <th scope="col" class="action-field text-center">Actions</th>
             </tr>
         </thead>
@@ -43,6 +44,7 @@
                     <td class="text-center">{{ $application->grade_obtained }}</td>
                     <td>{{ $application->endorsed_course_code }}</td>
                     <td>{{ $application->endorsed_course_name }}</td>
+                    <td>{{ $application->department->name }}</td>
                     <td class="action-field text-center">
                         <!-- Approve Button Form -->
                         <form action="{{ route('admin.student-application.approve', $application->id) }}" method="POST" style="display: inline-block;">

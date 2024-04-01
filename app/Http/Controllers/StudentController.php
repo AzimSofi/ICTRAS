@@ -55,7 +55,7 @@ class StudentController extends Controller
 
         $applications = Application::all();
         $userMatricNo = $user->matric_no;
-        $applications = Application::whereHas('user', function ($query) use ($userMatricNo) {
+        $applications = Application::whereHas('relatedUser', function ($query) use ($userMatricNo) {
             $query->where('matric_no', $userMatricNo);
         })->get();
 
