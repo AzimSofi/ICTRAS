@@ -7,6 +7,7 @@ use App\Http\Requests\StoreEndorsedCourseRequest;
 use App\Http\Requests\UpdateEndorsedCourseRequest;
 use App\Models\EndorsedCourse;
 use App\Models\Department;
+use App\Models\Application;
 
 class EndorsedCourseController extends Controller
 {
@@ -104,6 +105,16 @@ class EndorsedCourseController extends Controller
      */
     public function destroy(EndorsedCourse $endorsedCourse)
     {
-        //
+        Application::where('course_name', $endorsedCourse->course_name)
+        ->where('course_code', $endorsedCourse->course_code)
+        ->where('department_id', $endorsedCourse->department_id)
+        ->where('endorsed_course_name', $endorsedCourse->endorsed_course_name)
+        ->where('endorsed_course_code', $endorsedCourse->endorsed_course_code)
+        ->update(['status' => null]);
+
+        $endorsedCourse->delete();
+        return redirect()
+            ->route('endorsed_courses.index')
+            ->with('success', 'Endorsed Course has been deleted.');
     }
 }

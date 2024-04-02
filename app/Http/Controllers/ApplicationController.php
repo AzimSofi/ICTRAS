@@ -52,7 +52,6 @@ class ApplicationController extends Controller
         }
 
         $applications = $applicationsQuery->get();
-
         if (auth()->user()->hasRole('student')) {
             return view('student.applications.index', compact('user', 'applications', 'departments'));
         } else {

@@ -10,12 +10,17 @@
     <!-- Tab navigation -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button"
-                role="tab" aria-controls="info" aria-selected="true">Information</button>
+            {{-- <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button"
+                role="tab" aria-controls="info" aria-selected="true">Information</button> --}}
+            <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab"
+                aria-controls="info" aria-selected="true" onclick="updateURL('info')">Information</button>
         </li>
         <li class="nav-item" role="presentation">
+            {{-- <button class="nav-link" id="applications-tab" data-bs-toggle="tab" data-bs-target="#applications"
+                type="button" role="tab" aria-controls="applications" aria-selected="false">Applications</button> --}}
             <button class="nav-link" id="applications-tab" data-bs-toggle="tab" data-bs-target="#applications"
-                type="button" role="tab" aria-controls="applications" aria-selected="false">Applications</button>
+                type="button" role="tab" aria-controls="applications" aria-selected="false"
+                onclick="updateURL('applications')">Applications</button>
         </li>
     </ul>
 
@@ -200,4 +205,29 @@
             }
         }
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let activeTab = urlParams.get('tab');
+
+    if (!activeTab || !document.querySelector('button[data-bs-target="#' + activeTab + '"]')) {
+        activeTab = 'info';
+        updateURL(activeTab);
+    }
+
+    let tabEl = document.querySelector('button[data-bs-target="#' + activeTab + '"]');
+    if (tabEl) {
+        tabEl.click();
+    }
+});
+
+function updateURL(tab) {
+    if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=' + tab;
+        window.history.pushState({path:newurl},'',newurl);
+    }
+}
 </script>
+@php
+    $activeTab = request()->query('tab', 'defaultTabId');
+@endphp

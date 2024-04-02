@@ -34,6 +34,7 @@
                 <th scope="col">Endorsed course code</th>
                 <th scope="col">Endorsed course name</th>
                 <th scope="col">Status</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -47,9 +48,31 @@
                     <td>{{ $endorsed_course->endorsed_course_code }}</td>
                     <td>{{ $endorsed_course->endorsed_course_name }}</td>
                     <td>{{ $endorsed_course->status ? 'APPROVED' : 'DISAPPROVED' }}</td>
+                    <td>
+                        <div class="d-flex justify-content-between align-items-center">
+                            {{-- <div class="align-self-center">
+                                <a href="{{ route('student.print.fromAdmin', $user) }}">
+                                    <i class="fas fa-light fa-print fa-lg icon-hover"></i>
+                                </a>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="edit-toggle fas fa-light fa-pen-to-square fa-lg icon-hover"
+                                    data-bs-toggle="collapse" data-bs-target="#editUser{{ $user->id }}"
+                                    data-user-id="{{ $user->id }}">
+                                </i>
+                            </div> --}}
+                            <div class="align-self-center">
+                                <i class="destroyItem fas fa-light fa-trash fa-lg icon-hover"
+                                    data-bs-route="{{ route('endorsed_courses.destroy', $endorsed_course) }}"
+                                    data-bs-object={{ $endorsed_course }}>
+                                </i>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     @include('admin.endorsed-course.create')
+    @include('admin.endorsed-course.destroy')
 @endsection
