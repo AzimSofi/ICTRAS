@@ -33,7 +33,7 @@ class AdminController extends Controller
 
         // Check if there's a search query
         if (!empty($search)) {
-            $applicationsQuery->where(function ($query) use ($search) {
+        $applicationsQuery->where(function ($query) use ($search) {
                 $query
                     ->where('course_code', 'like', "%{$search}%")
                     ->orWhere('course_name', 'like', "%{$search}%")

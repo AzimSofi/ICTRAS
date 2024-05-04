@@ -32,6 +32,7 @@ Route::post('/admin/student-application/{application}/disapprove', [App\Http\Con
 Route::post('/admin/student-application/{application}/update', [App\Http\Controllers\AdminController::class, 'applicationUpdate'])->name('admin.student-application.update');
 Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
 Route::get('lecturer', [App\Http\Controllers\LecturerController::class, 'index'])->name('lecturer.index');
+Route::get('hod', [App\Http\Controllers\HodController::class, 'index'])->name('hod.index');
 
 
 // Student
@@ -45,6 +46,9 @@ Route::post('previous_institution/edit', [App\Http\Controllers\StudentController
 Route::get('print_form/{user}', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print.fromAdmin');
 Route::get('print_form', [App\Http\Controllers\StudentController::class, 'print'])->name('student.print');
 Route::resource('applications', App\Http\Controllers\ApplicationController::class);
+
+// HOD
+Route::get('hod/students_application', [App\Http\Controllers\HodController::class, 'studentApplication'])->name('hod.student-application.index');
 
 // Storing pdf
 Route::get('/previous-study-plans/upload', [App\Http\Controllers\StudentController::class, 'showUploadForm'])->name('previousStudyPlan.upload');

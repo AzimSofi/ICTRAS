@@ -29,6 +29,8 @@ class HomeController extends Controller
             return redirect()->route('student.index');
         } elseif (auth()->user()->hasRole('lecturer')) {
             return redirect()->route('lecturer.index');
+        } elseif (auth()->user()->hasRole('hod')) {
+            return redirect()->route('hod.index');
         } else {
             return view('home');
             // return redirect()->route('home');

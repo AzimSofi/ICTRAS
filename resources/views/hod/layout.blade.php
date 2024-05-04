@@ -27,7 +27,7 @@
     <div class="container mt-5 pt-3">
         <div class="row">
             <div id="sidebar" class="col-lg-3">
-                @include('lecturer.sidebar')
+                @include('hod.sidebar')
             </div>
             <div id="main-content" class="col-lg-9">
                 @yield('content')
