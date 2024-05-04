@@ -126,7 +126,7 @@
                         <th scope="col">Grade Obtained</th>
                         <th scope="col">IIUM Course code</th>
                         <th scope="col">IIUM Course name</th>
-                        <th scope="col">Department</th>
+                        {{-- <th scope="col">Department</th> --}}
                         <th scope="col">Credit hours</th>
                         <th scope="col">Status</th>
                         <th scope="col" style="width: 7%">Action</th>
@@ -141,7 +141,7 @@
                             <td>{{ $application?->grade_obtained }}</td>
                             <td>{{ $application?->endorsed_course_code }}</td>
                             <td>{{ $application?->endorsed_course_name }}</td>
-                            <td>{{ $application?->department->name }}</td>
+                            {{-- <td>{{ $application?->department->name }}</td> --}}
                             <td>{{ $application?->credit_hours }}</td>
                             <td>
                                 @if (is_null($application?->status))

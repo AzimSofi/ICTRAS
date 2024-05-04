@@ -44,18 +44,35 @@
                     <td class="text-center">{{ $application->grade_obtained }}</td>
                     <td>{{ $application->endorsed_course_code }}</td>
                     <td>{{ $application->endorsed_course_name }}</td>
-                    <td>{{ $application->department->name }}</td>
+                    {{-- <td>{{ $application->department->name }}</td> --}}
+                    <td>
+                        <form action="{{ route('admin.student-application.update', $application) }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <select id="department{{ $application->id }}" name="department_id" class="form-select" onchange="this.form.submit()">
+                                <option value="" {{ is_null($application->department_id) ? 'selected' : '' }}>None</option>
+                                @foreach ($departments as $department)
+                                    <option value="{{ $department->id }}"
+                                        {{ $application->department_id == $department->id ? 'selected' : '' }}>
+                                        {{ $department->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
+                    </td>
                     <td class="action-field text-center">
                         <!-- Approve Button Form -->
                         <form action="{{ route('admin.student-application.approve', $application->id) }}" method="POST" style="display: inline-block;">
                             @csrf
-                            <button type="submit" class="btn btn-success btn-sm btn-approve-disapprove">Approve</button>
+                                <button type="submit" class="btn btn-success btn-sm btn-approve-disapprove"
+                                {{ is_null($application->department_id) ? 'disabled' : '' }}>Approve</button>
                         </form>
 
                         <!-- Disapprove Button Form -->
                         <form action="{{ route('admin.student-application.disapprove', $application->id) }}" method="POST" style="display: inline-block;">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm btn-approve-disapprove">Disapprove</button>
+                            <button type="submit" class="btn btn-danger btn-sm btn-approve-disapprove"
+                                {{ is_null($application->department_id) ? 'disabled' : '' }}>Disapprove</button>
                         </form>
                     </td>
                 </tr>

@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('matric_no')->unique();
             $table->string('password');
             $table->string('profile_picture')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')/*->unique()*/;
             $table->integer('department_id')->nullable();
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('phone_number')->nullable();

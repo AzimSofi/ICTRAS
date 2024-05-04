@@ -26,7 +26,7 @@
                         <option value="F" {{ $application->grade_obtained == 'F' ? 'selected' : '' }}>F</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="department{{ $application->id }}" class="form-label">Department</label>
                     <select id="department{{ $application->id }}" name="department_id" class="form-select">
                         @foreach ($departments as $department)
@@ -36,7 +36,7 @@
                             </option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="col">
                 <div class="mb-3">

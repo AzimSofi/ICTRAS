@@ -21,7 +21,7 @@ class StudentController extends Controller
         if (auth()->user()->hasRole('student')) {
             return view('student.index', compact('user', 'departments'));
         } else {
-            return view('', compact('user', 'departments'));
+            return view('home', compact('user', 'departments'));
         }
     }
 

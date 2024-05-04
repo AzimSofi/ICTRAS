@@ -1,7 +1,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICTRAS | Student</title>
+    <title>ICTRAS | Admin</title>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -12,29 +12,18 @@
     <div class="container mt-5 pt-3">
         <div class="row">
             <div class="col-lg-3">
-                @include('student.sidebar')
+                @include('lecturer.sidebar')
             </div>
             <div class="col-lg-9">
                 <center>
                     <div class="card py-4" style="width: 50%;">
                         <div class="text-center">
-                            @if (auth()->user()->profile_picture)
-                                <img src="{{ asset('storage/profile_images/' . auth()->user()->profile_picture) }}"
-                                    class="card-img-top" alt="Profile Image of {{ $user->name }}"
-                                    style="width: 150px !important; height=auto; border-radius: var(--bs-card-inner-border-radius);">
-                            @else
-                                <img src="{{ asset('storage/profile_images/default.png') }}" class="card-img-top"
-                                    alt="Default Profile Image"
-                                    style="width: 150px !important; height=auto; border-radius: var(--bs-card-inner-border-radius);">
-                            @endif
+                            <img src="images/admin_pfp.png" {{-- class="card-img-top" alt="Card image cap" --}} width="150px" height="auto">
                         </div>
                         <div class="card-body">
                             <h1 class="card-title text-center mb-4">{{ $user->name }}</h1>
-                            <p><b>Role :</b> {{ $user->getRoleNames(); }}</p>
-                            <p><b>Matric No :</b> {{ $user->matric_no }}</p>
-                            <p><b>Email :</b> {{ $user->email }}</p>
-                            <p><b>Phone no :</b> {{ $user->phone_number ?? 'Unknown' }}</p>
-                            <p><b>Department :</b> {{ $user->department->name ?? 'Unknown'}}</p>
+                            <p><b>Phone :</b> {{ $user->phone_number }}</p>
+                            <p><b>Email:</b> {{ $user->email }}</p>
                         </div>
                     </div>
                     <br>
@@ -45,5 +34,5 @@
             </div>
         </div>
     </div>
-    @include('student.edit')
+    @include('admin.edit')
 </body>

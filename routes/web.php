@@ -29,7 +29,10 @@ Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->nam
 Route::get('admin/students_application', [App\Http\Controllers\AdminController::class, 'studentApplication'])->name('admin.student-application.index');
 Route::post('/admin/student-application/{application}/approve', [App\Http\Controllers\AdminController::class, 'applicationApprove'])->name('admin.student-application.approve');
 Route::post('/admin/student-application/{application}/disapprove', [App\Http\Controllers\AdminController::class, 'applicationDisapprove'])->name('admin.student-application.disapprove');
+Route::post('/admin/student-application/{application}/update', [App\Http\Controllers\AdminController::class, 'applicationUpdate'])->name('admin.student-application.update');
 Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
+Route::get('lecturer', [App\Http\Controllers\LecturerController::class, 'index'])->name('lecturer.index');
+
 
 // Student
 Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class);

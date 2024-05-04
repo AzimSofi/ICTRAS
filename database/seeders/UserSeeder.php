@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
+                // ADMIN
                 'name' => 'ADMIN',
                 'matric_no' => 'admin',
                 'password' => Hash::make('123'),
@@ -26,6 +27,107 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            // LECTURER
+            [
+                'name' => 'AERO Lecturer #1',
+                'matric_no' => 'AERO1',
+                'password' => Hash::make('AERO1AERO1'),
+                'email' => 'AERO1@iium.edu.my',
+                'profile_picture' => 0,
+                'department_id' => 0,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'AERO Lecturer #1',
+                'matric_no' => 'AUTO1',
+                'password' => Hash::make('AUTO1AUTO1'),
+                'email' => 'AUTO1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 1,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'BIO Lecturer #1',
+                'matric_no' => 'BIO1',
+                'password' => Hash::make('BIO1BIO1'),
+                'email' => 'BIO1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 2,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'CIV Lecturer #1',
+                'matric_no' => 'CIV1',
+                'password' => Hash::make('CIV1CIV1'),
+                'email' => 'CIV1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 3,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'COMM Lecturer #1',
+                'matric_no' => 'COMM1',
+                'password' => Hash::make('COMM1COMM1'),
+                'email' => 'AERO1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 4,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'ECIE Lecturer #1',
+                'matric_no' => 'ECIE1',
+                'password' => Hash::make('ECIE1ECIE1'),
+                'email' => 'ECIE1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 5,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'MANU Lecturer #1',
+                'matric_no' => 'MANU1',
+                'password' => Hash::make('MANU1MANU1'),
+                'email' => 'AERO1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 6,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'MATER Lecturer #1',
+                'matric_no' => 'MATER1',
+                'password' => Hash::make('MATER1MATER1'),
+                'email' => 'MATER1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 7,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'MECH Lecturer #1',
+                'matric_no' => 'MECH1',
+                'password' => Hash::make('MECH1MECH1'),
+                'email' => 'MECH1@iium.edu.my',
+                'profile_picture' => null,
+                'department_id' => 8,
+                'phone_number' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // STUDENT
             [
                 'name' => 'Takagi',
                 'matric_no' => '202020',
@@ -74,8 +176,10 @@ class UserSeeder extends Seeder
                 'updated_at' => $data['updated_at'],
             ]);
 
-            if ($data['name'] === 'ADMIN') {
+            if ($data['matric_no'] === 'admin') {
                 $user->assignRole('admin');
+            } elseif (str_contains($data['name'], 'Lecturer')) {
+                $user->assignRole('lecturer');
             } else {
                 $user->assignRole('student');
             }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\Department;
 use App\Models\EndorsedCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,8 @@ class AdminController extends Controller
 
     public function studentApplication(Request $request)
     {
+        $departments = Department::all();
+
         // Start the query builder for applications with a default condition
         $applicationsQuery = Application::where('status', null);
 
@@ -43,7 +46,7 @@ class AdminController extends Controller
         // Execute the query
         $applications = $applicationsQuery->get();
 
-        return view('admin.student-application.index', compact('applications'));
+        return view('admin.student-application.index', compact('applications', 'departments'));
     }
 
     public function applicationApprove(Application $application)
@@ -96,5 +99,12 @@ class AdminController extends Controller
         foreach ($applications as $application) {
             ApplicationController::evaluateCourse($application);
         }
+    }
+
+    public function applicationUpdate(Request $request, Application $application) {
+        $application->department_id = $request->department_id;
+        $application->save();
+
+        return back()->with('success', 'Department updated successfully.');
     }
 }
