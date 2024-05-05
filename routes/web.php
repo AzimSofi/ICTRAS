@@ -54,3 +54,7 @@ Route::get('hod/students_application', [App\Http\Controllers\HodController::clas
 Route::get('/previous-study-plans/upload', [App\Http\Controllers\StudentController::class, 'showUploadForm'])->name('previousStudyPlan.upload');
 Route::post('/previous-study-plans/upload', [App\Http\Controllers\StudentController::class, 'storePreviousStudyPlan'])->name('previousStudyPlan.store');
 Route::get('/previous-study-plans/{previousStudyPlan}', [App\Http\Controllers\StudentController::class, 'showPreviousStudyPlan'])->name('previousStudyPlan.show');
+
+Route::get('/applications/course-outline/index', [App\Http\Controllers\ApplicationController::class, 'indexCourseOutline'])->name('courseOutline.index');
+Route::post('/applications/course-outline/upload/{application}', [App\Http\Controllers\ApplicationController::class, 'storeCourseOutline'])->name('courseOutline.store');
+Route::get('/applications/course-outline/{applications}', [App\Http\Controllers\ApplicationController::class, 'showCourseOutline'])->name('courseOutline.show');

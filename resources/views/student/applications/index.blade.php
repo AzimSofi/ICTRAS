@@ -155,6 +155,12 @@
                             <td>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="align-self-center">
+                                        <i class="edit-toggle fas fa-light fa-file fa-lg icon-hover"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#courseOutlineModal">
+                                        </i>
+                                    </div>
+                                    <div class="align-self-center">
                                         <i class="edit-toggle fas fa-light fa-pen-to-square fa-lg icon-hover"
                                             data-bs-toggle="collapse" data-bs-target="#editCourse{{ $application->id }}"
                                             data-user-id="{{ $application->id }}">
@@ -163,7 +169,7 @@
                                     <div class="align-self-center">
                                         <i class="destroyItem fas fa-light fa-trash fa-lg icon-hover"
                                             data-bs-route="{{ route('applications.destroy', $application) }}"
-                                            data-bs-object={{ $application }}>
+                                            data-bs-object-id="{{ $application->id }}">
                                         </i>
                                     </div>
                                 </div>
@@ -185,6 +191,7 @@
     @include('student.applications.previous_institution.edit')
     @include('student.applications.create')
     @include('student.applications.destroy')
+    @include('student.applications.course_outline.index')
 @endsection
 
 @if (session('success'))

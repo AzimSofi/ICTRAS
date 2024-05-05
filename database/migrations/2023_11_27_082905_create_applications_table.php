@@ -23,6 +23,9 @@ return new class extends Migration {
             $table->float("credit_hours");
             $table->char("grade_obtained");
             $table->boolean("status")->nullable();
+            $table->string('pdf_name')->nullable();
+            $table->binary('pdf_content')->nullable();
+            // $table->longText('pdf_content')->nullable()->change(); // Using longText for compatibility across DBMS
             $table->timestamps();
         });
     }

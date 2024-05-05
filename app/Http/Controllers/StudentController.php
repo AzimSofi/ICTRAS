@@ -82,7 +82,7 @@ class StudentController extends Controller
     // Previous study plan pdf
     public function showUploadForm()
     {
-        return view('pdf.upload');
+        return view('previousStudyPlan.show');
     }
 
     public function storePreviousStudyPlan(Request $request)
@@ -111,7 +111,7 @@ class StudentController extends Controller
             // dd($previousInstitution);
             $previousInstitution->save();
 
-            return redirect()->route('pdf.upload')->with('success', 'PDF uploaded successfully.');
+            return redirect()->route('previousStudyPlan.upload')->with('success', 'PDF uploaded successfully.');
         } else {
             //
             return redirect()->back()->with('warning', 'No matching record found.');

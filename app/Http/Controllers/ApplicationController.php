@@ -113,6 +113,7 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
+        // Application::get($application->id)->delete();
         $application->delete();
         return redirect()->route('applications.index')->with('success', 'Course has been deleted.')->with('activeTab', 'applications');
     }
@@ -140,5 +141,43 @@ class ApplicationController extends Controller
         }
 
         $application->save();
+    }
+
+    public function indexCourseOutline()
+    {
+        return view('student.applications.course_outline.index', compact(''));
+    }
+    public function storeCourseOutline(Request $request, Application $application)
+    {
+        try {
+            $request->validate([
+                'pdf' => 'required|file|mimes:pdf|max:2048', // PDF files only, max 2MB
+            ]);
+
+            $pdf = $request->file('pdf');
+            $pdfContent = file_get_contents($pdf->getRealPath());
+
+            $application->pdf_name = $pdf->getClientOriginalName();
+            $application->pdf_content = $pdfContent;
+            $application->save();
+
+            return redirect()->route('applications.index')->with('success', 'PDF uploaded successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors('Error uploading PDF: ' . $e->getMessage());
+        }
+    }
+
+    public function showCourseOutline(Application $application)
+    {
+        if ($application->pdf_content) {
+            return response()->make($application->pdf_content, 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="' . $application->pdf_name . '"',
+            ]);
+        } else {
+            return redirect()->back()->with('error', 'No PDF available for this application.');
+        }
     }
 }
