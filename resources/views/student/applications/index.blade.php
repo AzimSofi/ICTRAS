@@ -83,7 +83,7 @@
                         </button>
                     @endif
                     <div class="mt-5">
-                        Insert:
+                        Insert study plan:
                         <form action="{{ route('previousStudyPlan.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="pdf" required>
@@ -129,7 +129,7 @@
                         {{-- <th scope="col">Department</th> --}}
                         <th scope="col">Credit hours</th>
                         <th scope="col">Status</th>
-                        <th scope="col" style="width: 7%">Action</th>
+                        <th scope="col" class="text-center" style="width: 10%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,9 +155,8 @@
                             <td>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="align-self-center">
-                                        <i class="edit-toggle fas fa-light fa-file fa-lg icon-hover"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#courseOutlineModal">
+                                        <i class="edit-toggle fas fa-light fa-file fa-lg icon-hover" data-bs-toggle="modal"
+                                            data-bs-target="#courseOutlineModal{{ $application->id }}">
                                         </i>
                                     </div>
                                     <div class="align-self-center">
@@ -182,6 +181,7 @@
                                 </div>
                             </td>
                         </tr>
+                    @include('student.applications.course_outline.index', ['application' => $application])
                     @endforeach
                 </tbody>
             </table>
@@ -191,7 +191,6 @@
     @include('student.applications.previous_institution.edit')
     @include('student.applications.create')
     @include('student.applications.destroy')
-    @include('student.applications.course_outline.index')
 @endsection
 
 @if (session('success'))

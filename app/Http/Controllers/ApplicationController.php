@@ -153,16 +153,19 @@ class ApplicationController extends Controller
             $request->validate([
                 'pdf' => 'required|file|mimes:pdf|max:2048', // PDF files only, max 2MB
             ]);
-
+            // dd($application->id);
             $pdf = $request->file('pdf');
             $pdfContent = file_get_contents($pdf->getRealPath());
 
             $application->pdf_name = $pdf->getClientOriginalName();
             $application->pdf_content = $pdfContent;
             $application->save();
+            // dd($pdf);
 
             return redirect()->route('applications.index')->with('success', 'PDF uploaded successfully.');
         } catch (\Exception $e) {
+            dd('Error uploading PDF: ' . $e->getMessage(), $application);
+            // dd($application);
             return redirect()
                 ->back()
                 ->withErrors('Error uploading PDF: ' . $e->getMessage());

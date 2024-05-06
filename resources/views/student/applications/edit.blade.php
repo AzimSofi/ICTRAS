@@ -20,10 +20,10 @@
                         required>
                         <option value="A" {{ $application->grade_obtained == 'A' ? 'selected' : '' }}>A</option>
                         <option value="B" {{ $application->grade_obtained == 'B' ? 'selected' : '' }}>B</option>
-                        <option value="C" {{ $application->grade_obtained == 'C' ? 'selected' : '' }}>C</option>
+                        {{-- <option value="C" {{ $application->grade_obtained == 'C' ? 'selected' : '' }}>C</option>
                         <option value="D" {{ $application->grade_obtained == 'D' ? 'selected' : '' }}>D</option>
                         <option value="E" {{ $application->grade_obtained == 'E' ? 'selected' : '' }}>E</option>
-                        <option value="F" {{ $application->grade_obtained == 'F' ? 'selected' : '' }}>F</option>
+                        <option value="F" {{ $application->grade_obtained == 'F' ? 'selected' : '' }}>F</option> --}}
                     </select>
                 </div>
                 {{-- <div class="mb-3">

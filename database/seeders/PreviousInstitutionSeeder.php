@@ -26,6 +26,28 @@ class PreviousInstitutionSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'matric_no' => '202020',
+                'name' => 'Universiti Malaya',
+                'degree_status' => true,
+                'degree_or_diploma_name' => 'Computer Science',
+                'year_of_study' => 2,
+                'reason_of_leaving' => 'Academic issue',
+                'cgpa' => 3.22,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'matric_no' => '212121',
+                'name' => 'Universiti Tun Hussein Onn Malaysia',
+                'degree_status' => true,
+                'degree_or_diploma_name' => 'Computer Science',
+                'year_of_study' => 2,
+                'reason_of_leaving' => 'Family issue',
+                'cgpa' => 2.89,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         foreach ($prevInstitutions as $data) {

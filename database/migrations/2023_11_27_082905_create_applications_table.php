@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration {
     /**
@@ -24,10 +25,13 @@ return new class extends Migration {
             $table->char("grade_obtained");
             $table->boolean("status")->nullable();
             $table->string('pdf_name')->nullable();
-            $table->binary('pdf_content')->nullable();
-            // $table->longText('pdf_content')->nullable()->change(); // Using longText for compatibility across DBMS
+            // $table->binary('pdf_content')->nullable();
+            // $table->longText('pdf_content')->nullable(); // Compatibility across DBMS
+            // $table->mediumBlob('pdf_content')->nullable(); // Compatibility across DBMS
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE applications ADD pdf_content MEDIUMBLOB NULL");
     }
 
     /**
