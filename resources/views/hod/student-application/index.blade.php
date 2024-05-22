@@ -72,14 +72,14 @@
                     {{-- <td>{{ $application->department->name }}</td> --}}
                     <td class="action-field text-center">
                         <!-- Approve Button Form -->
-                        <form action="{{ route('admin.student-application.approve', $application->id) }}" method="POST"
+                        <form action="{{ route('hod.student-application.approve', $application->id) }}" method="POST"
                             style="display: inline-block;">
                             @csrf
                             <button type="submit" class="btn btn-success btn-sm btn-approve-disapprove">Approve</button>
                         </form>
 
                         <!-- Disapprove Button Form -->
-                        <form action="{{ route('admin.student-application.disapprove', $application->id) }}" method="POST"
+                        <form action="{{ route('hod.student-application.disapprove', $application->id) }}" method="POST"
                             style="display: inline-block;">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm btn-approve-disapprove">Disapprove</button>

@@ -7,6 +7,7 @@ use App\Models\Application;
 use App\Models\Department;
 use App\Models\PreviousInstitution;
 use App\Models\User;
+use App\Models\EndorsedCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
@@ -55,5 +56,57 @@ class HodController extends Controller
         $applications = $applicationsQuery->get();
 
         return view('hod.student-application.index', compact('applications', 'departments'));
+    }
+
+    public function applicationApprove(Application $application)
+    {
+        $data = [
+            "university" => $application->relatedUser->previousInstitution->name,
+            "course_code" => $application->course_code,
+            "course_name" => $application->course_name,
+            "status" => 1,
+            "department_id" => $application->department_id,
+            "endorsed_course_code" => $application->endorsed_course_code,
+            "endorsed_course_name" => $application->endorsed_course_name,
+        ];
+        // dd($data);
+        $endorsedCourse = EndorsedCourse::create($data);
+
+        $application->status = 1;
+        $application->save();
+
+        $this->evaluateAllCourses();
+
+        return redirect()->route('hod.student-application.index')->with('success', 'Application approved successfully.');
+    }
+
+    public function applicationDisapprove(Application $application)
+    {
+        $data = [
+            "university" => $application->relatedUser->previousInstitution->name,
+            "course_code" => $application->course_code,
+            "course_name" => $application->course_name,
+            "status" => 0,
+            "department_id" => $application->department_id,
+            "endorsed_course_code" => $application->endorsed_course_code,
+            "endorsed_course_name" => $application->endorsed_course_name,
+        ];
+        $endorsedCourse = EndorsedCourse::create($data);
+
+        $application->status = 0;
+        $application->save();
+
+        $this->evaluateAllCourses();
+
+        return redirect()->route('hod.student-application.index')->with('success', 'Application disapproved successfully.');
+    }
+
+    public function evaluateAllCourses()
+    {
+        $applications = Application::all();
+
+        foreach ($applications as $application) {
+            ApplicationController::evaluateCourse($application);
+        }
     }
 }

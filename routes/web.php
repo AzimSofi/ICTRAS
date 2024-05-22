@@ -27,8 +27,8 @@ Route::resource('users', App\Http\Controllers\UserController::class);
 // Admin
 Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 Route::get('admin/students_application', [App\Http\Controllers\AdminController::class, 'studentApplication'])->name('admin.student-application.index');
-Route::post('/admin/student-application/{application}/approve', [App\Http\Controllers\AdminController::class, 'applicationApprove'])->name('admin.student-application.approve');
-Route::post('/admin/student-application/{application}/disapprove', [App\Http\Controllers\AdminController::class, 'applicationDisapprove'])->name('admin.student-application.disapprove');
+// Route::post('/admin/student-application/{application}/approve', [App\Http\Controllers\AdminController::class, 'applicationApprove'])->name('admin.student-application.approve');
+// Route::post('/admin/student-application/{application}/disapprove', [App\Http\Controllers\AdminController::class, 'applicationDisapprove'])->name('admin.student-application.disapprove');
 Route::post('/admin/student-application/{application}/update', [App\Http\Controllers\AdminController::class, 'applicationUpdate'])->name('admin.student-application.update');
 Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])->name('student.index');
 Route::get('lecturer', [App\Http\Controllers\LecturerController::class, 'index'])->name('lecturer.index');
@@ -49,6 +49,9 @@ Route::resource('applications', App\Http\Controllers\ApplicationController::clas
 
 // HOD
 Route::get('hod/students_application', [App\Http\Controllers\HodController::class, 'studentApplication'])->name('hod.student-application.index');
+Route::post('/hod/student-application/{application}/approve', [App\Http\Controllers\HodController::class, 'applicationApprove'])->name('hod.student-application.approve');
+Route::post('/hod/student-application/{application}/disapprove', [App\Http\Controllers\HodController::class, 'applicationDisapprove'])->name('hod.student-application.disapprove');
+
 
 // Storing pdf
 Route::get('/previous-study-plans/upload', [App\Http\Controllers\StudentController::class, 'showUploadForm'])->name('previousStudyPlan.upload');
