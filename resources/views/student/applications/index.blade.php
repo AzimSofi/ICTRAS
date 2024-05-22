@@ -129,7 +129,7 @@
                         {{-- <th scope="col">Department</th> --}}
                         <th scope="col">Credit hours</th>
                         <th scope="col">Status</th>
-                        <th scope="col" class="text-center" style="width: 10%">Action</th>
+                        <th scope="col" class="text-center" style="width: 10%">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

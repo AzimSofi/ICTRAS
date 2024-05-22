@@ -29,7 +29,7 @@
                 <th scope="col" class="text-center">Grade Obtained</th>
                 <th scope="col">IIUM Course Code</th>
                 <th scope="col">IIUM Course Name</th>
-                <th scope="col" style="width: 5%">Documents</th>
+                <th scope="col" class="text-center" style="width: 5%">Documents</th>
                 {{-- <th scope="col">Department</th> --}}
                 <th scope="col" class="action-field text-center">Actions</th>
             </tr>
@@ -45,20 +45,26 @@
                     <td class="text-center">{{ $application->grade_obtained }}</td>
                     <td>{{ $application->endorsed_course_code }}</td>
                     <td>{{ $application->endorsed_course_name }}</td>
-                    <td class="action-field text-center">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="align-self-center">
-                                <i class="edit-toggle fas fa-info fa-lg icon-hover" style="color: rgb(62, 83, 94)"
+                    <td> {{-- Documents --}}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="align-self-center me-3">
+                                <i class="fas fa-light fa-circle-info fa-lg icon-hover"
                                     title="Description of course by student" data-bs-toggle="modal"
-                                    data-bs-target="#courseDescriptionModal{{ $application->id }}"></i>
+                                    data-bs-target="#courseDescriptionModal{{ $application->id }}">
+                                </i>
                             </div>
                             <div class="align-self-center">
                                 @if ($application->pdf_content)
-                                    <a href="{{ route('courseOutline.show', ['application' => $application->id]) }}" target="_blank">
-                                        <i class="fas fa-file-pdf fa-lg" style="color: rgb(62, 83, 94);" title="Course outline by student"></i>
+                                    <a href="{{ route('courseOutline.show', ['application' => $application->id]) }}"
+                                        target="_blank">
+                                        <i class="fas fa-light fa-file fa-lg icon-hover"
+                                            title="Course outline by student">
+                                        </i>
                                     </a>
                                 @else
-                                    <i class="fas fa-file-pdf fa-lg" style="color: gray;" title="No course outline available"></i>
+                                    <i class="fas fa-light fa-file fa-lg icon-hover"
+                                        title="No course outline available">
+                                    </i>
                                 @endif
                             </div>
                         </div>
