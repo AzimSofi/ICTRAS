@@ -55,6 +55,10 @@
                         required value="{{ $application->credit_hours ?? '' }}">
                 </div>
             </div>
+            <div class="mb-3">
+                <label for="course_description{{ $application->id }}" class="form-label">Course description</label>
+                <textarea class="form-control" id="course_description{{ $application->id }}" name="course_description" rows="5" required>{{ $application->course_description ?? '' }}</textarea>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <button type="button" data-bs-toggle="collapse" data-bs-target="#editCourse{{ $application->id }}"

@@ -26,7 +26,9 @@ class AdminController extends Controller
         $departments = Department::all();
 
         // Start the query builder for applications with a default condition
-        $applicationsQuery = Application::where('status', null);
+        // $applicationsQuery = Application::where('status', null);
+
+        $applicationsQuery = Application::query();
 
         // Capture the search query from the request
         $search = $request->input('search');

@@ -29,6 +29,8 @@
                 <th scope="col" class="text-center">Grade Obtained</th>
                 <th scope="col">IIUM Course Code</th>
                 <th scope="col">IIUM Course Name</th>
+                <th scope="col">Status</th>
+                <th scope="col" style="width:5%" >Documents</th>
                 <th scope="col">Department</th>
                 {{-- <th scope="col" class="action-field text-center">Actions</th> --}}
             </tr>
@@ -44,13 +46,42 @@
                     <td class="text-center">{{ $application->grade_obtained }}</td>
                     <td>{{ $application->endorsed_course_code }}</td>
                     <td>{{ $application->endorsed_course_name }}</td>
+                    <td>
+                        @if (is_null($application?->status))
+                            PROCESSING REQUEST
+                        @elseif($application?->status)
+                            APPROVED
+                        @else
+                            DISAPPROVED
+                        @endif
+                    </td>
+                    <td class="action-field text-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="align-self-center">
+                                <i class="edit-toggle fas fa-info fa-lg icon-hover" style="color: rgb(62, 83, 94)"
+                                    title="Description of course by student" data-bs-toggle="modal"
+                                    data-bs-target="#courseDescriptionModal{{ $application->id }}"></i>
+                            </div>
+                            <div class="align-self-center">
+                                @if ($application->pdf_content)
+                                    <a href="{{ route('courseOutline.show', ['application' => $application->id]) }}" target="_blank">
+                                        <i class="fas fa-file-pdf fa-lg" style="color: rgb(62, 83, 94);" title="Course outline by student"></i>
+                                    </a>
+                                @else
+                                    <i class="fas fa-file-pdf fa-lg" style="color: gray;" title="No course outline available"></i>
+                                @endif
+                            </div>
+                        </div>
+                    </td>
                     {{-- <td>{{ $application->department->name }}</td> --}}
                     <td>
                         <form action="{{ route('admin.student-application.update', $application) }}" method="POST">
                             @csrf
                             @method('POST')
-                            <select id="department{{ $application->id }}" name="department_id" class="form-select" onchange="this.form.submit()">
-                                <option value="" {{ is_null($application->department_id) ? 'selected' : '' }}>None</option>
+                            <select id="department{{ $application->id }}" name="department_id" class="form-select"
+                                onchange="this.form.submit()">
+                                <option value="" {{ is_null($application->department_id) ? 'selected' : '' }}>None
+                                </option>
                                 @foreach ($departments as $department)
                                     <option value="{{ $department->id }}"
                                         {{ $application->department_id == $department->id ? 'selected' : '' }}>
@@ -76,6 +107,7 @@
                         </form>
                     </td> --}}
                 </tr>
+                @include('admin.student-application.course-description');
             @endforeach
         </tbody>
     </table>

@@ -171,7 +171,6 @@ class ApplicationController extends Controller
                 ->withErrors('Error uploading PDF: ' . $e->getMessage());
         }
     }
-
     public function showCourseOutline(Application $application)
     {
         if ($application->pdf_content) {

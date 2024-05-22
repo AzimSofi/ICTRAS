@@ -13,7 +13,7 @@ class Application extends Model
 
     protected $table = 'applications';
 
-    protected $fillable = ['user', 'course_code', 'course_name', 'department_id', 'credit_hours', 'endorsed_course_code', 'endorsed_course_name', 'grade_obtained', 'status', 'pdf_name', 'pdf_content'];
+    protected $fillable = ['user', 'course_code', 'course_name', 'department_id', 'credit_hours', 'endorsed_course_code', 'endorsed_course_name', 'grade_obtained', 'status', 'pdf_name', 'pdf_content', 'course_description'];
 
     public function relatedUser()
     {

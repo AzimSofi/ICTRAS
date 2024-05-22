@@ -24,6 +24,7 @@ class ApplicationSeeder extends Seeder
                 'credit_hours' => '3',
                 'grade_obtained' => 'B',
                 'status' => '0',
+                'course_description' => 'This course focuses on the fundamental principles and applications of electronic circuits. Students will acquire practical skills in the design, analysis, and troubleshooting of electronic circuits.',
             ],
             [
                 'user' => '2010613',
@@ -35,6 +36,7 @@ class ApplicationSeeder extends Seeder
                 'credit_hours' => '3',
                 'grade_obtained' => 'A',
                 'status' => '1',
+                'course_description' => 'In this course, students will learn about the fundamental concepts and techniques of digital signal processing. Topics explored include digital filtering, signal transformation, and frequency analysis.',
             ],
             [
                 'user' => '2010613',
@@ -46,6 +48,7 @@ class ApplicationSeeder extends Seeder
                 'credit_hours' => '3',
                 'grade_obtained' => 'B',
                 'status' => null,
+                'course_description' => 'This course covers the fundamental principles of calculus with applications relevant to engineering. Topics include limits, derivatives, integrals, and their applications in solving engineering problems.',
             ],
             [
                 'user' => '202020',
@@ -57,6 +60,7 @@ class ApplicationSeeder extends Seeder
                 'credit_hours' => '3',
                 'grade_obtained' => 'B',
                 'status' => null,
+                'course_description' => 'This course covers the fundamental principles of calculus with applications relevant to engineering. Topics include limits, derivatives, integrals, and their applications in solving engineering problems.',
             ],
             [
                 'user' => '2010613',
@@ -68,6 +72,7 @@ class ApplicationSeeder extends Seeder
                 'credit_hours' => '3',
                 'grade_obtained' => 'A',
                 'status' => null,
+                'course_description' => 'This course extends the principles of calculus introduced in Math 1 to include techniques of integration, infinite series, and differential equations relevant to engineering applications.',
             ],
             [
                 'user' => '212121',
@@ -79,6 +84,7 @@ class ApplicationSeeder extends Seeder
                 'credit_hours' => '3',
                 'grade_obtained' => 'A',
                 'status' => null,
+                'course_description' => 'This course introduces students to the principles of aerodynamics, including the behavior of gases, flow patterns around objects, and the forces involved in flight. Practical applications in aerospace engineering are explored.',
             ],
         ];
 

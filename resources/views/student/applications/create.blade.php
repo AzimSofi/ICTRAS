@@ -54,6 +54,11 @@
                                 <input type="numer" class="form-control" id="credit_hours" name="credit_hours" required>
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="course_description" class="form-label">Course description</label>
+                            <textarea class="form-control" id="course_description" name="course_description" rows="5" required></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
