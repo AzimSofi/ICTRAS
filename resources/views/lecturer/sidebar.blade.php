@@ -1,4 +1,4 @@
-<div class="list-group">
+<div class="list-group mb-3">
     {{-- <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
         The current link item
     </a> --}}

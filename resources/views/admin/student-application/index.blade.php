@@ -48,11 +48,17 @@
                     <td>{{ $application->endorsed_course_name }}</td>
                     <td>
                         @if (is_null($application?->status))
-                            PROCESSING REQUEST
+                            <div style="color: #0D6EFD">
+                                PROCESSING REQUEST
+                            </div>
                         @elseif($application?->status)
-                            APPROVED
+                            <div style="color: #198754">
+                                APPROVED
+                            </div>
                         @else
-                            DISAPPROVED
+                            <div style="color: #DC3545">
+                                DISAPPROVED
+                            </div>
                         @endif
                     </td>
                     <td>
