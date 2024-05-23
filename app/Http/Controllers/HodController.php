@@ -29,6 +29,7 @@ class HodController extends Controller
     public function studentApplication(Request $request)
     {
         $departments = Department::all();
+        $lecturers = User::role('lecturer')->get();
 
         // Assuming you can access the current user's department_id like this
         $currentDepartmentId = auth()->user()->department_id; // or use any method to get the logged-in user's department id
@@ -55,19 +56,19 @@ class HodController extends Controller
         // Execute the query
         $applications = $applicationsQuery->get();
 
-        return view('hod.student-application.index', compact('applications', 'departments'));
+        return view('hod.student-application.index', compact('applications', 'departments', 'lecturers'));
     }
 
     public function applicationApprove(Application $application)
     {
         $data = [
-            "university" => $application->relatedUser->previousInstitution->name,
-            "course_code" => $application->course_code,
-            "course_name" => $application->course_name,
-            "status" => 1,
-            "department_id" => $application->department_id,
-            "endorsed_course_code" => $application->endorsed_course_code,
-            "endorsed_course_name" => $application->endorsed_course_name,
+            'university' => $application->relatedUser->previousInstitution->name,
+            'course_code' => $application->course_code,
+            'course_name' => $application->course_name,
+            'status' => 1,
+            'department_id' => $application->department_id,
+            'endorsed_course_code' => $application->endorsed_course_code,
+            'endorsed_course_name' => $application->endorsed_course_name,
         ];
         // dd($data);
         $endorsedCourse = EndorsedCourse::create($data);
@@ -83,13 +84,13 @@ class HodController extends Controller
     public function applicationDisapprove(Application $application)
     {
         $data = [
-            "university" => $application->relatedUser->previousInstitution->name,
-            "course_code" => $application->course_code,
-            "course_name" => $application->course_name,
-            "status" => 0,
-            "department_id" => $application->department_id,
-            "endorsed_course_code" => $application->endorsed_course_code,
-            "endorsed_course_name" => $application->endorsed_course_name,
+            'university' => $application->relatedUser->previousInstitution->name,
+            'course_code' => $application->course_code,
+            'course_name' => $application->course_name,
+            'status' => 0,
+            'department_id' => $application->department_id,
+            'endorsed_course_code' => $application->endorsed_course_code,
+            'endorsed_course_name' => $application->endorsed_course_name,
         ];
         $endorsedCourse = EndorsedCourse::create($data);
 
@@ -108,5 +109,14 @@ class HodController extends Controller
         foreach ($applications as $application) {
             ApplicationController::evaluateCourse($application);
         }
+    }
+
+    public function recommendToLecturer(Request $request, Application $application)
+    {
+        $lecturer = User::findOrFail($request->lecturer_id);
+        $application->recommendation_from = $lecturer->matric_no;
+        $application->save();
+
+        return redirect()->route('hod.student-application.index')->with('success', 'Application sent to lecturer successfully.');
     }
 }

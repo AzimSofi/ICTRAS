@@ -1,23 +1,12 @@
 @include('layouts.app')
 
-@extends('hod.layout')
+@extends('lecturer.layout')
 
 @section('title')
     ICTRAS | Student Management
 @endsection
 
 @section('content')
-    <div class="row mb-4">
-        <div class="col">
-            <form action="{{ 'hod.student-application.index' }}" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="Search for application..."
-                        value="{{ request('search') }}">
-                    <button type="submit" class="btn btn-outline-primary">Search</button>
-                </div>
-            </form>
-        </div>
-    </div>
     <table class="table">
         <thead>
             <tr>
@@ -31,7 +20,6 @@
                 <th scope="col">IIUM Course Name</th>
                 <th scope="col" class="text-center" style="width: 5%">Documents</th>
                 {{-- <th scope="col">Department</th> --}}
-                <th scope="col" class="action-field text-center">Send for review</th>
                 <th scope="col" class="action-field text-center">Actions</th>
             </tr>
         </thead>
@@ -68,65 +56,40 @@
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td class="action-field text-center">
                         @if (is_null($application->recommendation))
-                            <form action="{{ route('hod.student-application.recommend-to-lecturer', $application) }}"
-                                method="POST">
+                            <!-- Approve Button Form -->
+                            <form action="{{ route('lecturer.student-application.recommend', $application->id) }}"
+                                method="POST" style="display: inline-block;">
                                 @csrf
-                                <select id="lecturer{{ $application->id }}" name="lecturer_id" class="form-select"
-                                    onchange="this.form.submit()">
-                                    <option value=""
-                                        {{ is_null($application->recommendation_from) ? 'selected' : '' }}>None</option>
-                                    @foreach ($lecturers as $lecturer)
-                                        <option value="{{ $lecturer->id }}"
-                                            {{ $application->recommendation_from == $lecturer->matric_no ? 'selected' : '' }}>
-                                            {{ $lecturer->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <button type="submit"
+                                    class="btn btn-success btn-sm btn-approve-disapprove">Recommend</button>
+                            </form>
+
+                            <!-- Disapprove Button Form -->
+                            <form action="{{ route('lecturer.student-application.not-recommend', $application->id) }}"
+                                method="POST" style="display: inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm btn-approve-disapprove">Not
+                                    recommend</button>
                             </form>
                         @else
                             @if ($application->recommendation)
                                 <div class="aligh-self-center">
-                                    Recommended by {{ $application->recommendation_from }}
+                                    Recommended
                                 </div>
                             @else
                                 <div class="aligh-self-center">
-                                    Not Recommended by {{ $application->recommendation_from }}
+                                    Not Recommended
                                 </div>
                             @endif
                         @endif
                     </td>
-                    {{-- <td>{{ $application->department->name }}</td> --}}
-                    <td class="action-field text-center">
-                        <!-- Approve Button Form -->
-                        <form action="{{ route('hod.student-application.approve', $application->id) }}" method="POST"
-                            style="display: inline-block;">
-                            @csrf
-                            <button type="submit" class="btn btn-success btn-sm btn-approve-disapprove">Approve</button>
-                        </form>
-
-                        <!-- Disapprove Button Form -->
-                        <form action="{{ route('hod.student-application.disapprove', $application->id) }}" method="POST"
-                            style="display: inline-block;">
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm btn-approve-disapprove">Disapprove</button>
-                        </form>
-                    </td>
                 </tr>
-                @include('hod.student-application.course-description', ['application' => $application])
+                @include('hod.student-application.course-description', [
+                    'application' => $application,
+                ])
             @endforeach
         </tbody>
     </table>
 @endsection
-
-<style>
-    .btn-approve-disapprove {
-        width: 80px;
-        height: 30px;
-    }
-
-    .action-field {
-        width: 180px;
-    }
-</style>

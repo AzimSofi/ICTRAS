@@ -24,4 +24,35 @@ class LecturerController extends Controller
             return view('home', compact('user', 'departments'));
         }
     }
+
+    public function dashboard(Application $application)
+    {
+        $applications = Application::where('recommendation_from', Auth::user()->matric_no)->get();
+        // dd(Auth::user()->matric_no);
+        /*
+        $applications = Application::where('recommendation_from', Auth::user()->matric_no)
+                           ->whereNull('recommended')
+                           ->get();
+        */
+        return view('lecturer.dashboard', compact('applications'));
+    }
+
+    public function applicationRecommend(Application $application)
+    {
+        $application->recommendation = true;
+        // $application->recommendation_from = Auth::user()->matric_no;
+        $application->save();
+
+        return redirect()->route('lecturer.dashboard')->with('success', 'Application recommended successfully.');
+    }
+
+    public function applicationNotRecommend(Application $application)
+    {
+        $application->recommendation = false;
+        // $application->recommendation_from = Auth::user()->matric_no;
+        $application->save();
+
+        return redirect()->route('lecturer.dashboard')->with('success', 'Application not recommended successfully.');
+    }
+
 }
