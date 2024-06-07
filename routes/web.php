@@ -51,7 +51,13 @@ Route::resource('applications', App\Http\Controllers\ApplicationController::clas
 Route::get('hod/students_application', [App\Http\Controllers\HodController::class, 'studentApplication'])->name('hod.student-application.index');
 Route::post('/hod/student-application/{application}/approve', [App\Http\Controllers\HodController::class, 'applicationApprove'])->name('hod.student-application.approve');
 Route::post('/hod/student-application/{application}/disapprove', [App\Http\Controllers\HodController::class, 'applicationDisapprove'])->name('hod.student-application.disapprove');
+Route::post('/hod/student-application/{application}/recommend-to-lecturer', [App\Http\Controllers\HodController::class, 'recommendToLecturer'])->name('hod.student-application.recommend-to-lecturer');
 
+
+// Lecturer
+Route::get('lecturer/dashboard', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer.dashboard');
+Route::post('/hod/student-application/{application}/recommend', [App\Http\Controllers\LecturerController::class, 'applicationRecommend'])->name('lecturer.student-application.recommend');
+Route::post('/hod/student-application/{application}/not-recommend', [App\Http\Controllers\LecturerController::class, 'applicationNotRecommend'])->name('lecturer.student-application.not-recommend');
 
 // Storing pdf
 Route::get('/previous-study-plans/upload', [App\Http\Controllers\StudentController::class, 'showUploadForm'])->name('previousStudyPlan.upload');

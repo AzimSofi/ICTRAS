@@ -26,6 +26,8 @@ return new class extends Migration {
             $table->boolean("status")->nullable();
             $table->string('pdf_name')->nullable();
             $table->string('course_description')->nullable();
+            $table->boolean('recommendation')->nullable();
+            $table->string('recommendation_from')->nullable();
             // $table->binary('pdf_content')->nullable();
             // $table->longText('pdf_content')->nullable(); // Compatibility across DBMS
             // $table->mediumBlob('pdf_content')->nullable(); // Compatibility across DBMS

@@ -3,6 +3,7 @@
         The current link item
     </a> --}}
     <a href="{{ route('lecturer.index') }}" class="list-group-item list-group-item-action">Home</a>
+    <a href="{{ route('lecturer.dashboard') }}" class="list-group-item list-group-item-action">Dashboard</a>
     {{-- <a href="{{ route('userlogs.index') }}" class="list-group-item list-group-item-action">Userlog</a>
     <a href="{{ route('endorsed_courses.index') }}" class="list-group-item list-group-item-action">Endorsed Courses</a>
     <a href="{{ route('student_management.index') }}" class="list-group-item list-group-item-action">Student
