@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->char("grade_obtained");
             $table->boolean("status")->nullable();
             $table->string('pdf_name')->nullable();
-            $table->string('course_description')->nullable();
+            $table->text('course_description')->nullable();
             $table->boolean('recommendation')->nullable();
             $table->string('recommendation_from')->nullable();
             // $table->binary('pdf_content')->nullable();
