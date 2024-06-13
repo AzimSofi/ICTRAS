@@ -230,8 +230,8 @@ class UserSeeder extends Seeder
             // STUDENT
             [
                 'name' => 'Takagi',
-                'matric_no' => '202020',
-                'password' => Hash::make('202020202020'),
+                'matric_no' => '2020202',
+                'password' => Hash::make('20202022020202'),
                 'email' => 'Takagi@san.com',
                 'profile_picture' => '202020.png',
                 'department_id' => 1,
@@ -241,10 +241,10 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Nishikata',
-                'matric_no' => '212121',
-                'password' => Hash::make('212121212121'),
+                'matric_no' => '2121212',
+                'password' => Hash::make('21212122121212'),
                 'email' => 'Nishi@kata.com',
-                'profile_picture' => '212121.png',
+                'profile_picture' => '2121212.png',
                 'department_id' => 4,
                 'phone_number' => '0134567892',
                 'created_at' => now(),

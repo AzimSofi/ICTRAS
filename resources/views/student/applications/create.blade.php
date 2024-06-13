@@ -43,7 +43,10 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="endorsed_course_code" class="form-label">IIUM Course code</label>
-                                <input type="text" class="form-control" id="endorsed_course_code" name="endorsed_course_code" required pattern="[a-zA-Z]{4} \d{4}">
+                                <input type="text" class="form-control" id="endorsed_course_code" name="endorsed_course_code"
+                                    required pattern="[a-zA-Z]{4} \d{4}"
+                                    title="IIUM course code must be in this format: ABCD 1234"
+                                    >
                             </div>
                             <div class="mb-3">
                                 <label for="endorsed_course_name" class="form-label">IIUM Course Name</label>

@@ -33,8 +33,8 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Matric no.') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="matric_no" type="text" pattern="\d{6}"
-                                        title="Matric number must be 6digit"
+                                    <input id="matric_no" type="text" pattern="\d{7}"
+                                        title="Matric number must be 7 digit"
                                         class="form-control @error('matric_no') is-invalid @enderror" name="matric_no"
                                         value="{{ old('matric_no') }}" required autocomplete="matric_no">
 
