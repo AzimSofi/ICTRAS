@@ -29,19 +29,13 @@ class HodController extends Controller
     public function studentApplication(Request $request)
     {
         $departments = Department::all();
-        $lecturers = User::role('lecturer')->get();
-
-        // Assuming you can access the current user's department_id like this
-        $currentDepartmentId = auth()->user()->department_id; // or use any method to get the logged-in user's department id
-
-        // Start the query builder for applications with a default condition
-        // Filter by current user's department_id
+        $lecturers = User::role('lecturer')
+            ->where('department_id', auth()->user()->department_id)
+            ->get();
+        $currentDepartmentId = auth()->user()->department_id;
         $applicationsQuery = Application::where('status', null)->where('department_id', $currentDepartmentId);
 
-        // Capture the search query from the request
         $search = $request->input('search');
-
-        // Check if there's a search query
         if (!empty($search)) {
             $applicationsQuery->where(function ($query) use ($search) {
                 $query
@@ -53,7 +47,6 @@ class HodController extends Controller
             });
         }
 
-        // Execute the query
         $applications = $applicationsQuery->get();
 
         return view('hod.student-application.index', compact('applications', 'departments', 'lecturers'));
