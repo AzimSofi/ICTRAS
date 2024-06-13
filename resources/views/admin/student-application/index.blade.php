@@ -9,13 +9,13 @@
 @section('content')
     <div class="row mb-4">
         <div class="col">
-            <form action="{{ 'admin.student-application.index' }}" method="GET">
+            {{-- <form action="{{ 'admin.student-application.index' }}" method="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search for application..."
                         value="{{ request('search') }}">
                     <button type="submit" class="btn btn-outline-primary">Search</button>
                 </div>
-            </form>
+            </form> --}}
         </div>
     </div>
     <table class="table">
