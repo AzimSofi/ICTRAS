@@ -27,7 +27,7 @@ class PreviousInstitutionSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'matric_no' => '202020',
+                'matric_no' => '2020202',
                 'name' => 'Universiti Malaya',
                 'degree_status' => true,
                 'degree_or_diploma_name' => 'Computer Science',
@@ -38,7 +38,7 @@ class PreviousInstitutionSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'matric_no' => '212121',
+                'matric_no' => '2121212',
                 'name' => 'Universiti Tun Hussein Onn Malaysia',
                 'degree_status' => true,
                 'degree_or_diploma_name' => 'Computer Science',
