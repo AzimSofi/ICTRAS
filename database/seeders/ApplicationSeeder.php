@@ -51,7 +51,7 @@ class ApplicationSeeder extends Seeder
                 'course_description' => 'This course covers the fundamental principles of calculus with applications relevant to engineering. Topics include limits, derivatives, integrals, and their applications in solving engineering problems.',
             ],
             [
-                'user' => '202020',
+                'user' => '2020202',
                 'course_code' => 'ABC 1234',
                 'course_name' => 'Math 1',
                 // 'department_id' => '4',
@@ -75,7 +75,7 @@ class ApplicationSeeder extends Seeder
                 'course_description' => 'This course extends the principles of calculus introduced in Math 1 to include techniques of integration, infinite series, and differential equations relevant to engineering applications.',
             ],
             [
-                'user' => '212121',
+                'user' => '2121212',
                 'course_code' => 'GHI 9123',
                 'course_name' => 'Aerodynamics I',
                 'department_id' => '1',
