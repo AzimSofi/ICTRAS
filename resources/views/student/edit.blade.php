@@ -6,11 +6,21 @@
                 <h5 class="modal-title" id="modalTitleId">Edit user details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('users.update', $user) }}">
+            <form method="POST" action="{{ route('users.update', $user) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body row">
                     <div class="col">
+                        <div class="mb-3">
+                            <label for="profile_picture" class="form-label">Profile Picture</label>
+                            <input id="profile_picture" type="file" class="form-control @error('profile_picture') is-invalid @enderror"
+                                name="profile_picture">
+                            @error('profile_picture')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input id="name" type="text"
@@ -24,8 +34,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="matric_no" class="form-label">Matric no</label>
-                            <input id="matric_no" type="text" pattern="\d{6}"
-                                title="Matric number must be 6digit"
+                            <input id="matric_no" type="text" pattern="\d{7}"
+                                title="Matric number must be 7 digits"
                                 class="form-control @error('matric_no') is-invalid @enderror" name="matric_no"
                                 value="{{ $user->matric_no }}" required autocomplete="matric_no">
                             @error('matric_no')

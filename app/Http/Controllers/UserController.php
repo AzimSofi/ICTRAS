@@ -54,6 +54,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        // dd($request->hasFile('profile_picture'));
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'matric_no' => ['required', 'string', 'digits:7', Rule::unique('users')->ignore($user->id)],
@@ -76,7 +78,7 @@ class UserController extends Controller
             $file = $request->file('profile_picture');
             $filename = $user->matric_no . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('storage/profile_images'), $filename);
-            $user->profile_picture = 'profile_images/' . $filename;
+            $user->profile_picture = '' . $filename;
         }
 
         $user->save();
