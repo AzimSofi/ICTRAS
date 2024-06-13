@@ -14,11 +14,11 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="course_code" class="form-label">Course code</label>
-                                <input type="text" class="form-control" id="course_code" name="course_code" required>
+                                <input type="text" class="form-control" id="course_code" name="course_code" required pattern="[a-zA-Z0-9]+">
                             </div>
                             <div class="mb-3">
                                 <label for="course_name" class="form-label">Course Name</label>
-                                <input type="text" class="form-control" id="course_name" name="course_name" required>
+                                <input type="text" class="form-control" id="course_name" name="course_name" required pattern="[a-zA-Z0-9]+">
                             </div>
                             <div class="mb-3">
                                 <label for="grade_obtained" class="form-label">Grade Obtained</label>
@@ -43,15 +43,15 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="endorsed_course_code" class="form-label">IIUM Course code</label>
-                                <input type="text" class="form-control" id="endorsed_course_code" name="endorsed_course_code" required>
+                                <input type="text" class="form-control" id="endorsed_course_code" name="endorsed_course_code" required pattern="[a-zA-Z]{4} \d{4}">
                             </div>
                             <div class="mb-3">
                                 <label for="endorsed_course_name" class="form-label">IIUM Course Name</label>
-                                <input type="text" class="form-control" id="endorsed_course_name" name="endorsed_course_name" required>
+                                <input type="text" class="form-control" id="endorsed_course_name" name="endorsed_course_name" required pattern="[a-zA-Z0-9 ]+">
                             </div>
                             <div class="mb-3">
                                 <label for="credit_hours" class="form-label">Credit hours</label>
-                                <input type="numer" class="form-control" id="credit_hours" name="credit_hours" required>
+                                <input type="numer" class="form-control" id="credit_hours" name="credit_hours" required pattern="\d">
                             </div>
                         </div>
 
@@ -72,4 +72,52 @@
 
 <script>
     const myModal = new bootstrap.Modal(document.getElementById('applicationModal'), options)
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+            const courseCodePattern = /^[a-zA-Z0-9]+$/;
+            const courseNamePattern = /^[a-zA-Z0-9 ]+$/;
+            const endorsedCourseCodePattern = /^\d{4} [A-Z]{4}$/;
+            const endorsedCourseNamePattern = /^[a-zA-Z0-9 ]+$/;
+            const creditHoursPattern = /^\d$/;
+
+            const courseCode = document.getElementById('course_code').value;
+            const courseName = document.getElementById('course_name').value;
+            const endorsedCourseCode = document.getElementById('endorsed_course_code').value;
+            const endorsedCourseName = document.getElementById('endorsed_course_name').value;
+            const creditHours = document.getElementById('credit_hours').value;
+
+            if (!courseCodePattern.test(courseCode)) {
+                alert('Invalid course code. Please enter letters and numbers only.');
+                event.preventDefault();
+                return;
+            }
+
+            if (!courseNamePattern.test(courseName)) {
+                alert('Invalid course name. Please enter letters and numbers only.');
+                event.preventDefault();
+                return;
+            }
+
+            if (!endorsedCourseCodePattern.test(endorsedCourseCode)) {
+                alert('Invalid IIUM course code. Please enter in the format "#### XXXX".');
+                event.preventDefault();
+                return;
+            }
+
+            if (!endorsedCourseNamePattern.test(endorsedCourseName)) {
+                alert('Invalid IIUM course name. Please enter letters and numbers only.');
+                event.preventDefault();
+                return;
+            }
+
+            if (!creditHoursPattern.test(creditHours)) {
+                alert('Invalid credit hours. Please enter a single digit number.');
+                event.preventDefault();
+                return;
+            }
+        });
+    });
+
 </script>
