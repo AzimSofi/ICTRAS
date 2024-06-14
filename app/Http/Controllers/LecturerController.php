@@ -27,7 +27,9 @@ class LecturerController extends Controller
 
     public function dashboard(Application $application)
     {
-        $applications = Application::where('recommendation_from', Auth::user()->matric_no)->get();
+        $applications = Application::where('recommendation_from', Auth::user()->matric_no)
+            ->whereNull('status')
+            ->get();
         // dd(Auth::user()->matric_no);
         /*
         $applications = Application::where('recommendation_from', Auth::user()->matric_no)
@@ -54,5 +56,4 @@ class LecturerController extends Controller
 
         return redirect()->route('lecturer.dashboard')->with('success', 'Application not recommended successfully.');
     }
-
 }
