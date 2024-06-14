@@ -106,10 +106,15 @@ class HodController extends Controller
 
     public function recommendToLecturer(Request $request, Application $application)
     {
-        $lecturer = User::findOrFail($request->lecturer_id);
-        $application->recommendation_from = $lecturer->matric_no;
+        if ($request->lecturer_id) {
+            $lecturer = User::findOrFail($request->lecturer_id);
+            $application->recommendation_from = $lecturer->matric_no;
+        } else {
+            $application->recommendation_from = null;
+        }
+
         $application->save();
 
-        return redirect()->route('hod.student-application.index')->with('success', 'Application sent to lecturer successfully.');
+        return redirect()->route('hod.student-application.index')->with('success', 'Application recommendation updated successfully.');
     }
 }

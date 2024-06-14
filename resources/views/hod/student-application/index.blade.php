@@ -87,11 +87,11 @@
                             </form>
                         @else
                             @if ($application->recommendation)
-                                <div class="aligh-self-center">
+                                <div class="align-self-center">
                                     Recommended by {{ $application->recommendation_from }}
                                 </div>
                             @else
-                                <div class="aligh-self-center">
+                                <div class="align-self-center">
                                     Not Recommended by {{ $application->recommendation_from }}
                                 </div>
                             @endif
