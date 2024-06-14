@@ -233,7 +233,7 @@ class UserSeeder extends Seeder
                 'matric_no' => '2020202',
                 'password' => Hash::make('20202022020202'),
                 'email' => 'Takagi@san.com',
-                'profile_picture' => '202020.png',
+                'profile_picture' => '2020202.png',
                 'department_id' => 1,
                 'phone_number' => '0123456789',
                 'created_at' => now(),
