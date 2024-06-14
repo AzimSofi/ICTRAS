@@ -100,7 +100,7 @@ class ApplicationSeeder extends Seeder
                 'grade_obtained' => 'B',
                 'status' => null,
                 'pdf_name' => 'KIE3008_BR006',
-                'pdf_content' => file_get_contents(storage_path('app\application_pdf_content\KIE3008_BR006.pdf')),
+                'pdf_content' => file_get_contents(storage_path('app/application_pdf_content/KIE3008_BR006.pdf')),
                 'course_description' => 'The course covers the introduction to the power electronics devices, cooling systems, and device protection. Power Electronics circuit such as uncontrolled and controlled DC (single and three phases), different types of DC to DC converter, and single and three phases rectifier and inverter is introduced. The student will be introduced to voltage control technique and pulse width modulation techniques design.',
             ],
             [
@@ -126,7 +126,7 @@ class ApplicationSeeder extends Seeder
                 'grade_obtained' => 'A',
                 'status' => null,
                 'pdf_name' => 'KIE3008_BR006',
-                'pdf_content' => file_get_contents(storage_path('app\application_pdf_content\KIE2007_BR006.pdf')),
+                'pdf_content' => file_get_contents(storage_path('app/application_pdf_content/KIE2007_BR006.pdf')),
                 'course_description' => 'This course gives an introduction to static electromagnetic fields. The student is first given a grounding in vector analysis. Then, electrostatics are introduced, with emphasis on electrostatic vector fields, electrical materials, capacitors and its derived energy and forces. Then, magnetostatics are given similar treatment regarding magnetostatic vector fields, magnetic materials, inductors and its derived energy, force and torque. Boundary value problems in static electromagnetics are also addressed.',
             ],
         ];
