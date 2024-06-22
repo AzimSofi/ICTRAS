@@ -14,11 +14,11 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="course_code" class="form-label">Course code</label>
-                                <input type="text" class="form-control" id="course_code" name="course_code" required pattern="[a-zA-Z0-9]+">
+                                <input type="text" class="form-control" id="course_code" name="course_code" required pattern="[a-zA-Z]{4} \d{4}">
                             </div>
                             <div class="mb-3">
                                 <label for="course_name" class="form-label">Course Name</label>
-                                <input type="text" class="form-control" id="course_name" name="course_name" required pattern="[a-zA-Z0-9]+">
+                                <input type="text" class="form-control" id="course_name" name="course_name" required pattern="[a-zA-Z0-9 ]+">
                             </div>
                             <div class="mb-3">
                                 <label for="grade_obtained" class="form-label">Grade Obtained</label>
@@ -79,7 +79,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.querySelector('form');
         form.addEventListener('submit', function (event) {
-            const courseCodePattern = /^[a-zA-Z0-9]+$/;
+            const courseCodePattern = /^\d{4} [A-Z]{4}$/;
             const courseNamePattern = /^[a-zA-Z0-9 ]+$/;
             const endorsedCourseCodePattern = /^\d{4} [A-Z]{4}$/;
             const endorsedCourseNamePattern = /^[a-zA-Z0-9 ]+$/;
@@ -104,7 +104,7 @@
             }
 
             if (!endorsedCourseCodePattern.test(endorsedCourseCode)) {
-                alert('Invalid IIUM course code. Please enter in the format "#### XXXX".');
+                alert('Invalid IIUM course code. Please enter in the format ABCD 1234.');
                 event.preventDefault();
                 return;
             }
