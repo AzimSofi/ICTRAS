@@ -41,23 +41,26 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="endorsed_course_code{{ $application->id }}" class="form-label">IIUM Course code</label>
-                    <input type="text" class="form-control" id="endorsed_course_code{{ $application->id }}" name="endorsed_course_code"
-                        required value="{{ $application->endorsed_course_code ?? '' }}">
+                    <input type="text" class="form-control" id="endorsed_course_code{{ $application->id }}"
+                        name="endorsed_course_code" required pattern="[a-zA-Z]{4} \d{4}"
+                        title="IIUM course code must be in this format: ABCD 1234"
+                        value="{{ $application->endorsed_course_code ?? '' }}">
                 </div>
                 <div class="mb-3">
                     <label for="endorsed_course_name{{ $application->id }}" class="form-label">IIUM Course name</label>
-                    <input type="text" class="form-control" id="endorsed_course_name{{ $application->id }}" name="endorsed_course_name"
-                        required value="{{ $application->endorsed_course_name ?? '' }}">
+                    <input type="text" class="form-control" id="endorsed_course_name{{ $application->id }}"
+                        name="endorsed_course_name" required value="{{ $application->endorsed_course_name ?? '' }}">
                 </div>
                 <div class="mb-3">
                     <label for="credit_hours{{ $application->id }}" class="form-label">Credit hours</label>
-                    <input type="text" class="form-control" id="credit_hours{{ $application->id }}" name="credit_hours"
-                        required value="{{ $application->credit_hours ?? '' }}">
+                    <input type="text" class="form-control" id="credit_hours{{ $application->id }}"
+                        name="credit_hours" required value="{{ $application->credit_hours ?? '' }}">
                 </div>
             </div>
             <div class="mb-3">
                 <label for="course_description{{ $application->id }}" class="form-label">Course description</label>
-                <textarea class="form-control" id="course_description{{ $application->id }}" name="course_description" rows="5" required>{{ $application->course_description ?? '' }}</textarea>
+                <textarea class="form-control" id="course_description{{ $application->id }}" name="course_description" rows="5"
+                    required>{{ $application->course_description ?? '' }}</textarea>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>

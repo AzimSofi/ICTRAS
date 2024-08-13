@@ -129,7 +129,7 @@
                         <th scope="col">IIUM Course name</th>
                         {{-- <th scope="col">Department</th> --}}
                         <th scope="col">Credit hours</th>
-                        <th scope="col">Status</th>
+                        {{-- Dont show status for student <th scope="col">Status</th> --}}
                         <th scope="col" class="text-center" style="width: 10%">Actions</th>
                     </tr>
                 </thead>
@@ -139,11 +139,12 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $application?->course_code }}</td>
                             <td>{{ $application?->course_name }}</td>
-                            <td>{{ $application?->grade_obtained }}</td>
+                            <td class="text-center">{{ $application?->grade_obtained }}</td>
                             <td>{{ $application?->endorsed_course_code }}</td>
                             <td>{{ $application?->endorsed_course_name }}</td>
                             {{-- <td>{{ $application?->department->name }}</td> --}}
-                            <td>{{ $application?->credit_hours }}</td>
+                            <td class="text-center">{{ $application?->credit_hours }}</td>
+                            {{-- Dont show status for student
                             <td>
                                 @if (is_null($application?->status))
                                     <div style="color: #0D6EFD">
@@ -158,7 +159,7 @@
                                         DISAPPROVED
                                     </div>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="align-self-center">

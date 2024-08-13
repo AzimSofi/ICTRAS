@@ -14,7 +14,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="course_code" class="form-label">Course code</label>
-                                <input type="text" class="form-control" id="course_code" name="course_code" required pattern="[a-zA-Z]{4} \d{4}">
+                                <input type="text" class="form-control" id="course_code" name="course_code" required {{-- pattern="[a-zA-Z]{4} \d{4}" --}}>
                             </div>
                             <div class="mb-3">
                                 <label for="course_name" class="form-label">Course Name</label>
