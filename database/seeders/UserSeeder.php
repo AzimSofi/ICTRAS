@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'name' => 'ADMIN',
                 'matric_no' => 'admin',
                 'password' => Hash::make('123'),
+                'super_user_password' => Hash::make('111'),
                 'email' => 'webmaster@iium.edu.my',
                 'profile_picture' => null,
                 'department_id' => null,

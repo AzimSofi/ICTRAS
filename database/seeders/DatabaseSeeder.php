@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EndorsedCourseSeeder::class);
         $this->call(ApplicationSeeder::class);
         $this->call(PreviousInstitutionSeeder::class);
+        $this->call(SuperUserSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

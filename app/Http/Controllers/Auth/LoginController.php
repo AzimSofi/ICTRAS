@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\SuperUser;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -61,4 +64,20 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        $superUser = SuperUser::first();
+        if ($superUser) {
+            $superUser->update(['status' => false]);
+        }
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
 }

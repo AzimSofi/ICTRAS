@@ -34,6 +34,10 @@ Route::get('student', [App\Http\Controllers\StudentController::class, 'index'])-
 Route::get('lecturer', [App\Http\Controllers\LecturerController::class, 'index'])->name('lecturer.index');
 Route::get('hod', [App\Http\Controllers\HodController::class, 'index'])->name('hod.index');
 
+// Super User
+Route::post('/validate-super-user-password', [App\Http\Controllers\SuperUserController::class, 'validatePassword'])->name('validate-super-user-password');
+Route::post('/revoke-super-user-access', [App\Http\Controllers\SuperUserController::class, 'revokeAccess'])->name('revoke-super-user-access');
+
 
 // Student
 Route::resource('endorsed_courses', App\Http\Controllers\EndorsedCourseController::class);
