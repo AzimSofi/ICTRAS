@@ -129,14 +129,17 @@ class ApplicationController extends Controller
         // Find a matching EndorsedCourse record
         $endorsedCourse = EndorsedCourse::where(DB::raw('LOWER(course_code)'), $courseCode)
             ->where(DB::raw('LOWER(course_name)'), $courseName)
-            ->where('department_id', $application->department_id)
+            // ->where('department_id', $application->department_id)
             ->where(DB::raw('LOWER(endorsed_course_code)'), $endorsedCourseCode)
             ->where(DB::raw('LOWER(endorsed_course_name)'), $endorsedCourseName)
             ->first(); // Use first() to get the actual model instance if it exists
 
         if ($endorsedCourse) {
+            // Set department_id and status from the found endorsed course
+            $application->department_id = $endorsedCourse->department_id;
             $application->status = $endorsedCourse->status;
         } else {
+            // Set status to null if no endorsed course is found
             $application->status = null;
         }
 
